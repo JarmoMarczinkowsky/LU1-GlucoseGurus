@@ -1,34 +1,37 @@
 using System.Collections.Generic;
+//using System.Drawing;
 using NUnit.Framework;
+using TMPro;
+
+//using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PageManagerScript : MonoBehaviour
 {
-    public GameObject Uitklapmenu;
-    //public GameObject PopUpMenuManager;
-    public List<GameObject> PopUpMenus;
+    [Header("Single Objects")]
+    public GameObject DropdownMenu;
 
     void Start()
     {
-        Uitklapmenu.SetActive(false);
+        DropdownMenu.SetActive(false);
 
-        foreach(var menu in PopUpMenus)
-        {
-            menu.gameObject.SetActive(false);
-        }
     }
+
+    #region Navigation
 
     public void ToggleMenu()
     {
 
-        if(Uitklapmenu.activeSelf == false)
+        if (DropdownMenu.activeSelf == false)
         {
-            Uitklapmenu.SetActive(true);
+            DropdownMenu.SetActive(true);
         }
         else
         {
-            Uitklapmenu.SetActive(false);
+            DropdownMenu.SetActive(false);
         }
     }
 
@@ -37,15 +40,6 @@ public class PageManagerScript : MonoBehaviour
         Debug.Log("Gekozen voor: " + scenename);
         //SceneManager.LoadScene(scenename);
     }
-
-    public void ShowPopUpMenu(int popUpIndex)
-    {
-        PopUpMenus[popUpIndex].gameObject.SetActive(true);
-    }
-
-    public void ClosePopUpMenu(int popUpIndex)
-    {
-        PopUpMenus[popUpIndex].gameObject.SetActive(false);
-    }
+    #endregion Navigation
 
 }
