@@ -2126,6 +2126,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  - {fileID: 1789783332}
+>>>>>>> Stashed changes
 =======
   - {fileID: 1789783332}
 >>>>>>> Stashed changes
@@ -3591,6 +3595,7 @@ CanvasRenderer:
   m_GameObject: {fileID: 1029146730}
   m_CullTransparentMesh: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!1 &1138856693
 GameObject:
   m_ObjectHideFlags: 0
@@ -4338,6 +4343,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392790146}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 --- !u!1 &1470233444
@@ -5246,6 +5253,7 @@ CanvasRenderer:
   m_GameObject: {fileID: 1754365758}
   m_CullTransparentMesh: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!1 &1832616373
 GameObject:
   m_ObjectHideFlags: 0
@@ -5383,6 +5391,8 @@ CanvasRenderer:
   m_GameObject: {fileID: 1832616373}
   m_CullTransparentMesh: 1
 =======
+=======
+>>>>>>> Stashed changes
 --- !u!1001 &1789783331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5485,6 +5495,9 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7313026645286780678, guid: 4cfd906fdf3839c4095bbef74c239af6, type: 3}
   m_PrefabInstance: {fileID: 1789783331}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!1 &1914544169
 GameObject:
@@ -5696,7 +5709,11 @@ CanvasRenderer:
   m_GameObject: {fileID: 1981549973}
   m_CullTransparentMesh: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!1 &1981608219
+=======
+--- !u!1 &1996317591
+>>>>>>> Stashed changes
 =======
 --- !u!1 &1996317591
 >>>>>>> Stashed changes
@@ -5708,16 +5725,22 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - component: {fileID: 1981608220}
   - component: {fileID: 1981608222}
   - component: {fileID: 1981608221}
   m_Layer: 5
   m_Name: Text (TMP)
 =======
+=======
+>>>>>>> Stashed changes
   - component: {fileID: 1996317593}
   - component: {fileID: 1996317592}
   m_Layer: 0
   m_Name: JungleBackground
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5725,8 +5748,13 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!224 &1981608220
 RectTransform:
+=======
+--- !u!212 &1996317592
+SpriteRenderer:
+>>>>>>> Stashed changes
 =======
 --- !u!212 &1996317592
 SpriteRenderer:
@@ -5735,6 +5763,7 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 1981608219}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -5843,6 +5872,8 @@ MonoBehaviour:
 --- !u!222 &1981608222
 CanvasRenderer:
 =======
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 1996317591}
   m_Enabled: 1
   m_CastShadows: 0
@@ -5894,15 +5925,21 @@ CanvasRenderer:
   m_SpriteSortPoint: 0
 --- !u!4 &1996317593
 Transform:
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 1981608219}
   m_CullTransparentMesh: 1
 =======
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 1996317591}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -5912,6 +5949,9 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!1 &2085787212
 GameObject:
@@ -5997,7 +6037,11 @@ SceneRoots:
   - {fileID: 781129830}
   - {fileID: 758496878}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - {fileID: 1215695207}
+=======
+  - {fileID: 1996317593}
+>>>>>>> Stashed changes
 =======
   - {fileID: 1996317593}
 >>>>>>> Stashed changes
