@@ -21,36 +21,49 @@ public class TreatmentplanManagerScript : MonoBehaviour
     public List<Button> TreatmentplanMoments;
 
     //private variables
-    private int Step;
+    private int treatmentStep;
+    private int operationStep;
 
     void Start()
     {
-        //DropdownMenu.SetActive(false);
+
 
         foreach (var menu in PopUpMenus)
         {
             menu.gameObject.SetActive(false);
         }
 
+
+        treatmentStep = (int)slider.value;
+        StepCounter.text = "Stap " + treatmentStep + " voltooid";
+
         SetColor();
+
+        operationStep = 3;
+
+        if(treatmentStep == operationStep)
+        {
+            // Show recovery reminders
+        }
+
     }
 
     #region TreatmentMoments
     public void SetColor()
     {
-        Step = (int)slider.value;
-        StepCounter.text = "Stap " + Step + " voltooid";
+        treatmentStep = (int)slider.value;
+        StepCounter.text = "Stap " + treatmentStep + " voltooid";
 
-        foreach(var button in TreatmentplanMoments)
+        foreach (var button in TreatmentplanMoments)
         {
             Color color;
             ColorUtility.TryParseHtmlString("#225D8A", out color);
             button.image.color = color;
         }
 
-        if (Step >= 0 && Step <= TreatmentplanMoments.Count)
+        if (treatmentStep >= 0 && treatmentStep <= TreatmentplanMoments.Count)
         {
-            for (int i = 0; i < Step; i++)
+            for (int i = 0; i < treatmentStep; i++)
             {
                 var button = TreatmentplanMoments[i];
 
@@ -59,11 +72,11 @@ public class TreatmentplanManagerScript : MonoBehaviour
                 button.image.color = color;
             }
 
-            if (Step != TreatmentplanMoments.Count)
+            if (treatmentStep != TreatmentplanMoments.Count)
             {
                 Color color;
                 ColorUtility.TryParseHtmlString("#AACF77", out color);
-                TreatmentplanMoments[Step].image.color = color;
+                TreatmentplanMoments[treatmentStep].image.color = color;
             }
         }
     }
