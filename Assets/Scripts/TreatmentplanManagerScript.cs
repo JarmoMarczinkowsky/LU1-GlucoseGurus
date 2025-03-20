@@ -14,8 +14,8 @@ public class TreatmentplanManagerScript : MonoBehaviour
     [Header("Single Objects")]
     public Slider slider;
     public TextMeshProUGUI StepCounter;
-
     //public GameObject PopUpMenuManager;
+
     [Header("Lists")]
     public List<GameObject> PopUpMenus;
     public List<Button> TreatmentplanMoments;
@@ -26,8 +26,6 @@ public class TreatmentplanManagerScript : MonoBehaviour
 
     void Start()
     {
-
-
         foreach (var menu in PopUpMenus)
         {
             menu.gameObject.SetActive(false);
@@ -44,6 +42,8 @@ public class TreatmentplanManagerScript : MonoBehaviour
         if(treatmentStep == operationStep)
         {
             // Show recovery reminders
+            // recoveryPopup.gameObject.SetActive(true);
+            // Or something is this direction
         }
 
     }
@@ -52,12 +52,12 @@ public class TreatmentplanManagerScript : MonoBehaviour
     public void SetColor()
     {
         treatmentStep = (int)slider.value;
-        StepCounter.text = "Stap " + treatmentStep + " voltooid";
+        StepCounter.text = "Gebruiker bij stap: " + treatmentStep;
 
         foreach (var button in TreatmentplanMoments)
         {
             Color color;
-            ColorUtility.TryParseHtmlString("#225D8A", out color);
+            ColorUtility.TryParseHtmlString("#969696", out color);
             button.image.color = color;
         }
 
@@ -68,15 +68,8 @@ public class TreatmentplanManagerScript : MonoBehaviour
                 var button = TreatmentplanMoments[i];
 
                 Color color; 
-                ColorUtility.TryParseHtmlString("#83A9C8", out color);
+                ColorUtility.TryParseHtmlString("#F5F5F5", out color);
                 button.image.color = color;
-            }
-
-            if (treatmentStep != TreatmentplanMoments.Count)
-            {
-                Color color;
-                ColorUtility.TryParseHtmlString("#AACF77", out color);
-                TreatmentplanMoments[treatmentStep].image.color = color;
             }
         }
     }
@@ -95,4 +88,16 @@ public class TreatmentplanManagerScript : MonoBehaviour
     }
     #endregion EducationalContent
 
+    #region Update
+    public void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            foreach (var menu in PopUpMenus)
+            {
+                menu.gameObject.SetActive(false);
+            }
+        }
+    }
+    #endregion Update
 }
