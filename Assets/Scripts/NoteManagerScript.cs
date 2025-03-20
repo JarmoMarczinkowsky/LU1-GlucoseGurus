@@ -9,9 +9,10 @@ public class NoteManagerScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [Header("Input Fields")]
     public List<TMP_InputField> lst_InputFields;
-    public Button createButton; 
+    public Button btnCreate; 
 
     private bool isTabPressed = false;
+    private int tabIndex = 0;
 
     //Color palette:
     //https://coolors.co/8bc348-f5c523-fe5377-0b3954-bfd7ea
@@ -33,27 +34,24 @@ public class NoteManagerScript : MonoBehaviour
             isTabPressed = true;
 
             //if tab is pressed, select the next input field, if the last input field is selected, select the button, if the button is selected, select the first input field
-            for (int i = 0; i < lst_InputFields.Count; i++)
+            switch (tabIndex)
             {
-                if (lst_InputFields[i].isFocused)
-                {
-                    if (i == lst_InputFields.Count - 1)
-                    {
-                        createButton.Select();
-                        break;
-                    }
-                    else
-                    {
-                        lst_InputFields[i + 1].Select();
-                        break;
-                    }
-                }
-                else if (createButton.gameObject == UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject)
-                {
-                    lst_InputFields[0].Select();
+                //case 0:
+                //    lst_InputFields[tabIndex].Select();
+                //    break;
+                case 1:
+                    lst_InputFields[tabIndex].Select();
                     break;
-                }
-            }
+                case 2:
+                    btnCreate.Select();
+                    break;
+                default:
+                    tabIndex = 0;
+                    lst_InputFields[tabIndex].Select();
+                    break;
+            };
+
+            tabIndex++;
 
         }
         else if (Input.GetKeyUp(KeyCode.Tab))
@@ -62,13 +60,18 @@ public class NoteManagerScript : MonoBehaviour
         }
     }
 
-    public void HoverEnterCreateButton()
-    {
+    //public void HoverEnterCreateButton()
+    //{
          
-    }
+    //}
 
-    public void HoverExitCreateButton()
+    //public void HoverExitCreateButton()
+    //{
+
+    //}
+
+    public void ChangeTabIndexValue(int index)
     {
-
+        tabIndex = index;
     }
 }
