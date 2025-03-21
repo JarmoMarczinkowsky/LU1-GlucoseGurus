@@ -566,7 +566,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start je avontuur!
+  m_text: Start het Proces
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -750,8 +750,8 @@ Transform:
   m_GameObject: {fileID: 1456985903}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -960, y: -540, z: 0}
-  m_LocalScale: {x: 3.5922675, y: 5.8040633, z: 1}
+  m_LocalPosition: {x: -960.0126, y: -540.1519, z: 0}
+  m_LocalScale: {x: 3.582209, y: 6.043191, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 621408934}
@@ -966,8 +966,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 40, y: 170}
-  m_SizeDelta: {x: 700, y: 110}
+  m_AnchoredPosition: {x: 20, y: 190}
+  m_SizeDelta: {x: 750, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1883696358
 MonoBehaviour:
@@ -989,10 +989,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Welkom ontdekkingsreiziger!\n\nJij bent de ontdekkingsreiziger die in
-    deze jungle spannende weetjes over jouw diabetes gaat leren! Wij helpen je om
-    de baas over je gezondheid te worden! \n\nPak je rugzak, zet je speurneus op
-    en trek eropuit! "
+  m_text: 'Welkom ouder/verzorger!
+
+
+    In deze app leert uw kind spelenderwijs
+    over diabetes en de behandeling. Met leuke opdrachten en weetjes helpen we hen
+    zelfstandig en zelfverzekerd om te gaan met hun gezondheid.
+
+
+    Bekijk samen
+    de avonturen en ontdek hoe leren ook leuk kan zijn!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
