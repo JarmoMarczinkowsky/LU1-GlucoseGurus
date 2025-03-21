@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RedCross_0: 1828938713226086485
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
