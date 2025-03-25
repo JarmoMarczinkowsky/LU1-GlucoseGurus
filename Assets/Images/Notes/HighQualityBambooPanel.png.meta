@@ -106,12 +106,12 @@ TextureImporter:
       name: HighQualityBambooPanel_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1176
-        height: 688
+        x: 104
+        y: 91
+        width: 986
+        height: 495
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -133,7 +133,7 @@ TextureImporter:
         width: 16
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -150,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9ea832bd8af6e6243994dde25a6e4fb3
     internalID: 0
     vertices: []
     indices: 
@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HighQualityBambooPanel_0: -6117057820957448370
+      HighQualityBambooPanel_1: -8901564744164222159
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
