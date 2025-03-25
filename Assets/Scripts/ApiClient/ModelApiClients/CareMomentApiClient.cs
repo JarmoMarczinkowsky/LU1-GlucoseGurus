@@ -14,26 +14,6 @@ public class CareMomentApiClient : MonoBehaviour
         return ParseCareMomentListResponse(webRequestResponse);
     }
 
-    public async Awaitable<IWebRequestResponse> CreateCareMoment(CareMoment careMoment)
-    {
-        string route = "/careMoments";
-        string data = JsonUtility.ToJson(careMoment);
-        IWebRequestResponse webRequestResponse = await webClient.SendPostRequest(route, data);
-        return ParseCareMomentResponse(webRequestResponse);
-    }
-    public async Awaitable<IWebRequestResponse> UpdateCareMoment(CareMoment careMoment)
-    {
-        string route = "/careMoments/" + careMoment.id;
-        string data = JsonUtility.ToJson(careMoment);
-        IWebRequestResponse webRequestResponse = await webClient.SendPutRequest(route, data);
-        return ParseCareMomentResponse(webRequestResponse);
-    }
-    public async Awaitable<IWebRequestResponse> DeleteCareMoment(string careMomentId)
-    {
-        string route = "/careMoments/" + careMomentId;
-        IWebRequestResponse webRequestResponse = await webClient.SendDeleteRequest(route);
-        return ParseCareMomentResponse(webRequestResponse);
-    }
     private IWebRequestResponse ParseCareMomentResponse(IWebRequestResponse webRequestResponse)
     {
         switch (webRequestResponse)
@@ -46,6 +26,7 @@ public class CareMomentApiClient : MonoBehaviour
                 return webRequestResponse;
         }
     }
+
     private IWebRequestResponse ParseCareMomentListResponse(IWebRequestResponse webRequestResponse)
     {
         switch (webRequestResponse)
