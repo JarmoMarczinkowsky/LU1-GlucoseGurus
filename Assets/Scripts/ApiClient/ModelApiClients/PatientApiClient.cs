@@ -13,7 +13,7 @@ public class PatientApiClient : MonoBehaviour
         string route = "/parentGuardians/" + parentGuardianId + "/patients";
 
         IWebRequestResponse webRequestResponse = await webClient.SendGetRequest(route);
-        return ParseParentGuardianListResponse(webRequestResponse);
+        return ParsePatientListResponse(webRequestResponse);
     }
 
     public async Awaitable<IWebRequestResponse> CreatePatient(Patient patient)
@@ -22,7 +22,7 @@ public class PatientApiClient : MonoBehaviour
         string data = JsonUtility.ToJson(patient);
 
         IWebRequestResponse webRequestResponse = await webClient.SendPostRequest(route, data);
-        return ParseParentGuardianResponse(webRequestResponse);
+        return ParsePatientResponse(webRequestResponse);
     }
 
     public async Awaitable<IWebRequestResponse> UpdatePatient(Patient patient)
@@ -31,7 +31,7 @@ public class PatientApiClient : MonoBehaviour
         string data = JsonUtility.ToJson(patient);
 
         IWebRequestResponse webRequestResponse = await webClient.SendPutRequest(route, data);
-        return ParseParentGuardianResponse(webRequestResponse);
+        return ParsePatientResponse(webRequestResponse);
     }
 
     public async Awaitable<IWebRequestResponse> DeletePatient(string parentGuardianId, string patientId)
@@ -39,7 +39,7 @@ public class PatientApiClient : MonoBehaviour
         string route = "/parentGuardians/" + parentGuardianId + "/patients/" + patientId;
 
         IWebRequestResponse webRequestResponse = await webClient.SendDeleteRequest(route);
-        return ParseParentGuardianResponse(webRequestResponse);
+        return ParsePatientResponse(webRequestResponse);
     }
 
     private IWebRequestResponse ParsePatientResponse(IWebRequestResponse webRequestResponse)
