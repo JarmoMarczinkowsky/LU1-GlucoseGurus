@@ -16,10 +16,35 @@ public class LoginManagerScript : MonoBehaviour
     public TMP_InputField password;
     public Button loginButton;
     public Button registerButton;
+    public Text statusText;
 
     public void LoadNextScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
+    private void ShowMessage(string message, Color color)
+    {
+        if (statusText != null)
+        {
+            statusText.text = message;
+            statusText.color = color;
+        }
+    }
+
+    public void Login()
+    {
+        if (username.text == "" || password.text == "")
+        {
+            ShowMessage("Vul alle velden in!", Color.red);
+            return;
+        }
+        
+
+        ShowMessage("Login succesvol!", Color.green);
+        LoadNextScene("WelcomeChildrenPage");
+    }
+    
+   
 
 }
+

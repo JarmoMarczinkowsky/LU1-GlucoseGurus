@@ -40,6 +40,31 @@ public class PageManagerScript : MonoBehaviour
         Debug.Log("Gekozen voor: " + scenename);
         //SceneManager.LoadScene(scenename);
     }
+
+    public void LoadRegister()
+    {
+        SceneManager.LoadScene("RegisterScreenPage");
+    }
+
+    public void LoadLogin()
+    {
+        SceneManager.LoadScene("LoginScreenPage");
+    }
+
+    public void LoadTreatment()
+    {
+        SceneManager.LoadScene("TreatmentPlanPage");
+    }
+
+    public void LoadWelcomeKids()
+    {
+        SceneManager.LoadScene("WelcomeChildrenPage");
+    }
+
+    public void LoadWelcomeParents()
+    {
+        SceneManager.LoadScene("WelcomeParentsPage");
+    }
     #endregion Navigation
 
 }
