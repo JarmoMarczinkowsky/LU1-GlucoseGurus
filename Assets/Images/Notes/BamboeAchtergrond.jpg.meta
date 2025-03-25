@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BamboeAchtergrond_0: 8369686934968587486
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
