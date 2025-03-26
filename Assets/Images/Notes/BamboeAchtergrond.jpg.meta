@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 563ddb6a5ba48714c994dbba2dd56315
+guid: e8ee5381c58308840b1144cc6e664585
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6929814024863328386
-    second: Bamboo_0
+      213: 8369686934968587486
+    second: BamboeAchtergrond_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bamboo_0
+      name: BamboeAchtergrond_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 980
-        height: 980
+        width: 2572
+        height: 1440
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 288af7fc325ab2060800000000000000
-      internalID: 6929814024863328386
+      spriteID: ed4d7004ce9172470800000000000000
+      internalID: 8369686934968587486
       vertices: []
       indices: 
       edges: []
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Bamboo_0: 6929814024863328386
+      BamboeAchtergrond_0: 8369686934968587486
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
