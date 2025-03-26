@@ -7,14 +7,14 @@ using UnityEngine;
 public class CareMomentApiClient : MonoBehaviour
 {
     public WebClient webClient;
-    public async Awaitable<IWebRequestResponse> ReadCareMoments()
+    public async Awaitable<IWebRequestReponse> ReadCareMoments()
     {
         string route = "/careMoments";
-        IWebRequestResponse webRequestResponse = await webClient.SendGetRequest(route);
+        IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route);
         return ParseCareMomentListResponse(webRequestResponse);
     }
 
-    private IWebRequestResponse ParseCareMomentResponse(IWebRequestResponse webRequestResponse)
+    private IWebRequestReponse ParseCareMomentResponse(IWebRequestReponse webRequestResponse)
     {
         switch (webRequestResponse)
         {
@@ -27,7 +27,7 @@ public class CareMomentApiClient : MonoBehaviour
         }
     }
 
-    private IWebRequestResponse ParseCareMomentListResponse(IWebRequestResponse webRequestResponse)
+    private IWebRequestReponse ParseCareMomentListResponse(IWebRequestReponse webRequestResponse)
     {
         switch (webRequestResponse)
         {

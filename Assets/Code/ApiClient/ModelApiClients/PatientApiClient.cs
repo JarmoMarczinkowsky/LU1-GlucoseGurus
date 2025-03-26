@@ -8,41 +8,41 @@ public class PatientApiClient : MonoBehaviour
 {
     public WebClient webClient;
 
-    public async Awaitable<IWebRequestResponse> ReadPatientsByParentGuardian(string parentGuardianId)
+    public async Awaitable<IWebRequestReponse> ReadPatientsByParentGuardian(string parentGuardianId)
     {
         string route = "/parentGuardians/" + parentGuardianId + "/patients";
 
-        IWebRequestResponse webRequestResponse = await webClient.SendGetRequest(route);
+        IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route);
         return ParsePatientListResponse(webRequestResponse);
     }
 
-    public async Awaitable<IWebRequestResponse> CreatePatient(Patient patient)
+    public async Awaitable<IWebRequestReponse> CreatePatient(Patient patient)
     {
         string route = "/parentGuardians" + patient.parentGuardianId + "/patients";
         string data = JsonUtility.ToJson(patient);
 
-        IWebRequestResponse webRequestResponse = await webClient.SendPostRequest(route, data);
+        IWebRequestReponse webRequestResponse = await webClient.SendPostRequest(route, data);
         return ParsePatientResponse(webRequestResponse);
     }
 
-    public async Awaitable<IWebRequestResponse> UpdatePatient(Patient patient)
+    public async Awaitable<IWebRequestReponse> UpdatePatient(Patient patient)
     {
         string route = "/parentGuardians/" + patient.parentGuardianId + "/patients/" + patient.id;
         string data = JsonUtility.ToJson(patient);
 
-        IWebRequestResponse webRequestResponse = await webClient.SendPutRequest(route, data);
+        IWebRequestReponse webRequestResponse = await webClient.SendPutRequest(route, data);
         return ParsePatientResponse(webRequestResponse);
     }
 
-    public async Awaitable<IWebRequestResponse> DeletePatient(string parentGuardianId, string patientId)
+    public async Awaitable<IWebRequestReponse> DeletePatient(string parentGuardianId, string patientId)
     {
         string route = "/parentGuardians/" + parentGuardianId + "/patients/" + patientId;
 
-        IWebRequestResponse webRequestResponse = await webClient.SendDeleteRequest(route);
+        IWebRequestReponse webRequestResponse = await webClient.SendDeleteRequest(route);
         return ParsePatientResponse(webRequestResponse);
     }
 
-    private IWebRequestResponse ParsePatientResponse(IWebRequestResponse webRequestResponse)
+    private IWebRequestReponse ParsePatientResponse(IWebRequestReponse webRequestResponse)
     {
         switch (webRequestResponse)
         {
@@ -55,7 +55,7 @@ public class PatientApiClient : MonoBehaviour
         }
     }
 
-    private IWebRequestResponse ParsePatientListResponse(IWebRequestResponse webRequestResponse)
+    private IWebRequestReponse ParsePatientListResponse(IWebRequestReponse webRequestResponse)
     {
         switch (webRequestResponse)
         {

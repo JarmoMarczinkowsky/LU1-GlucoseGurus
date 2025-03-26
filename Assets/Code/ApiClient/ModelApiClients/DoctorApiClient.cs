@@ -8,16 +8,16 @@ public class DoctorApiClient : MonoBehaviour
 {
     public WebClient webClient;
 
-    public async Awaitable<IWebRequestResponse> ReadDoctors()
+    public async Awaitable<IWebRequestReponse> ReadDoctors()
     {
         string route = "/doctors";
 
-        IWebRequestResponse webRequestResponse = await webClient.SendGetRequest(route);
+        IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route);
         return ParseDoctorListResponse(webRequestResponse);
     }
 
 
-    private IWebRequestResponse ParseDoctorResponse(IWebRequestResponse webRequestResponse)
+    private IWebRequestReponse ParseDoctorResponse(IWebRequestReponse webRequestResponse)
     {
         switch (webRequestResponse)
         {
@@ -30,7 +30,7 @@ public class DoctorApiClient : MonoBehaviour
         }
     }
 
-    private IWebRequestResponse ParseDoctorListResponse(IWebRequestResponse webRequestResponse)
+    private IWebRequestReponse ParseDoctorListResponse(IWebRequestReponse webRequestResponse)
     {
         switch (webRequestResponse)
         {

@@ -8,49 +8,49 @@ public class ParentGuardianApiClient : MonoBehaviour
 {
     public WebClient webClient;
 
-    public async Awaitable<IWebRequestResponse> ReadParentGuardians()
+    public async Awaitable<IWebRequestReponse> ReadParentGuardians()
     {
         string route = "/parentGuardians";
 
-        IWebRequestResponse webRequestResponse = await webClient.SendGetRequest(route);
+        IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route);
         return ParseParentGuardianListResponse(webRequestResponse);
     }
 
-    public async Awaitable<IWebRequestResponse> ReadParentGuardiansByUser(string UserId)
+    public async Awaitable<IWebRequestReponse> ReadParentGuardiansByUser(string UserId)
     {
         string route = "/parentGuardians";
 
-        IWebRequestResponse webRequestResponse = await webClient.SendGetRequest(route);
+        IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route);
         return ParseParentGuardianListResponse(webRequestResponse);
     }
 
-    public async Awaitable<IWebRequestResponse> CreateParentGuardian(ParentGuardian parentGuardian)
+    public async Awaitable<IWebRequestReponse> CreateParentGuardian(ParentGuardian parentGuardian)
     {
         string route = "/parentGuardians";
         string data = JsonUtility.ToJson(parentGuardian);
 
-        IWebRequestResponse webRequestResponse = await webClient.SendPostRequest(route, data);
+        IWebRequestReponse webRequestResponse = await webClient.SendPostRequest(route, data);
         return ParseParentGuardianResponse(webRequestResponse);
     }
 
-    public async Awaitable<IWebRequestResponse> UpdateParentGuardian(ParentGuardian parentGuardian)
+    public async Awaitable<IWebRequestReponse> UpdateParentGuardian(ParentGuardian parentGuardian)
     {
         string route = "/parentGuardians/" + parentGuardian.id;
         string data = JsonUtility.ToJson(parentGuardian);
 
-        IWebRequestResponse webRequestResponse = await webClient.SendPutRequest(route, data);
+        IWebRequestReponse webRequestResponse = await webClient.SendPutRequest(route, data);
         return ParseParentGuardianResponse(webRequestResponse);
     }
 
-    public async Awaitable<IWebRequestResponse> DeleteParentGuardian(string parentGuardianId)
+    public async Awaitable<IWebRequestReponse> DeleteParentGuardian(string parentGuardianId)
     {
         string route = "/parentGuardians/" + parentGuardianId;
 
-        IWebRequestResponse webRequestResponse = await webClient.SendDeleteRequest(route);
+        IWebRequestReponse webRequestResponse = await webClient.SendDeleteRequest(route);
         return ParseParentGuardianResponse(webRequestResponse);
     }
 
-    private IWebRequestResponse ParseParentGuardianResponse(IWebRequestResponse webRequestResponse)
+    private IWebRequestReponse ParseParentGuardianResponse(IWebRequestReponse webRequestResponse)
     {
         switch (webRequestResponse)
         {
@@ -63,7 +63,7 @@ public class ParentGuardianApiClient : MonoBehaviour
         }
     }
 
-    private IWebRequestResponse ParseParentGuardianListResponse(IWebRequestResponse webRequestResponse)
+    private IWebRequestReponse ParseParentGuardianListResponse(IWebRequestReponse webRequestResponse)
     {
         switch (webRequestResponse)
         {

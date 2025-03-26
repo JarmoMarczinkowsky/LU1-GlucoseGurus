@@ -9,37 +9,37 @@ public class TrajectApiClient : MonoBehaviour
 
     public WebClient webClient;
 
-    public async Awaitable<IWebRequestResponse> ReadTrajects()
+    public async Awaitable<IWebRequestReponse> ReadTrajects()
     {
         string route = "/trajects";
-        IWebRequestResponse webRequestResponse = await webClient.SendGetRequest(route);
+        IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route);
         return ParseTrajectListResponse(webRequestResponse);
     }
 
-    public async Awaitable<IWebRequestResponse> CreateTraject(Traject traject)
+    public async Awaitable<IWebRequestReponse> CreateTraject(Traject traject)
     {
         string route = "/trajects";
         string data = JsonUtility.ToJson(traject);
-        IWebRequestResponse webRequestResponse = await webClient.SendPostRequest(route, data);
+        IWebRequestReponse webRequestResponse = await webClient.SendPostRequest(route, data);
         return ParseTrajectResponse(webRequestResponse);
     }
 
-    public async Awaitable<IWebRequestResponse> UpdateTraject(Traject traject)
+    public async Awaitable<IWebRequestReponse> UpdateTraject(Traject traject)
     {
         string route = "/trajects/" + traject.id;
         string data = JsonUtility.ToJson(traject);
-        IWebRequestResponse webRequestResponse = await webClient.SendPutRequest(route, data);
+        IWebRequestReponse webRequestResponse = await webClient.SendPutRequest(route, data);
         return ParseTrajectResponse(webRequestResponse);
     }
 
-    public async Awaitable<IWebRequestResponse> DeleteTraject(string patientId, string trajectId)
+    public async Awaitable<IWebRequestReponse> DeleteTraject(string patientId, string trajectId)
     {
         string route = "/trajects/" + trajectId;
-        IWebRequestResponse webRequestResponse = await webClient.SendDeleteRequest(route);
+        IWebRequestReponse webRequestResponse = await webClient.SendDeleteRequest(route);
         return ParseTrajectResponse(webRequestResponse);
     }
 
-    private IWebRequestResponse ParseTrajectResponse(IWebRequestResponse webRequestResponse)
+    private IWebRequestReponse ParseTrajectResponse(IWebRequestReponse webRequestResponse)
     {
         switch (webRequestResponse)
         {
@@ -52,7 +52,7 @@ public class TrajectApiClient : MonoBehaviour
         }
     }
 
-    private IWebRequestResponse ParseTrajectListResponse(IWebRequestResponse webRequestResponse)
+    private IWebRequestReponse ParseTrajectListResponse(IWebRequestReponse webRequestResponse)
     {
         switch (webRequestResponse)
         {
