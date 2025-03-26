@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b19504ac788bb6147b6ccb9d8992e5af
+guid: 563ddb6a5ba48714c994dbba2dd56315
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4273875776393966287
-    second: Panel_-_kopie-removebg-preview_0
+      213: 6929814024863328386
+    second: Bamboo_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Panel_-_kopie-removebg-preview_0
+      name: Bamboo_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 21
-        width: 250
-        height: 127
+        x: 0
+        y: 0
+        width: 980
+        height: 980
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fc2fb1aef5bdf4b30800000000000000
-      internalID: 4273875776393966287
+      spriteID: 288af7fc325ab2060800000000000000
+      internalID: 6929814024863328386
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Panel_0: -1198477067713850731
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
