@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: b19504ac788bb6147b6ccb9d8992e5af
+guid: 63eeaa75286c0fb408cf506306971ae4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4273875776393966287
-    second: Panel_-_kopie-removebg-preview_0
+      213: -6117057820957448370
+    second: HighQualityBambooPanel_0
+  - first:
+      213: -8901564744164222159
+    second: HighQualityBambooPanel_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,40 +99,49 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Panel_-_kopie-removebg-preview_0
+      name: HighQualityBambooPanel_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 21
-        width: 250
-        height: 127
+        x: 104
+        y: 91
+        width: 986
+        height: 495
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fc2fb1aef5bdf4b30800000000000000
-      internalID: 4273875776393966287
+      spriteID: e476e474258db1ba0800000000000000
+      internalID: -6117057820957448370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HighQualityBambooPanel_1
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 591
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13b53f6170a477480800000000000000
+      internalID: -8901564744164222159
       vertices: []
       indices: 
       edges: []
@@ -138,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9ea832bd8af6e6243994dde25a6e4fb3
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Panel_0: -1198477067713850731
+      HighQualityBambooPanel_0: -6117057820957448370
+      HighQualityBambooPanel_1: -8901564744164222159
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
