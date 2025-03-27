@@ -18,22 +18,54 @@ public class NoteManagerScript : MonoBehaviour
     public GameObject menuNoteOverview;
     public GameObject menuNoteCreator;
     public TMP_Text txbErrorNoteCreator;
+    public GameObject notePrefab;
+
+    [Header("Dependencies")]
+    public NoteApiClient noteApiClient;
+    public UserApiClient userApiClient;
+
 
     private bool isTabPressed = false;
     private int tabIndex = 0;
     private int moodScale = 0;
+    private Note newNote;
 
     //Color palette:
     //https://coolors.co/8bc348-f5c523-fe5377-0b3954-bfd7ea
     void Start()
     {
         menuNoteCreator.SetActive(false);
+
+        LoadNotes();
     }
 
     // Update is called once per frame
     void Update()
     {
         SelectOtherInputField();
+    }
+
+    private async void LoadNotes()
+    {
+        IWebRequestReponse webRequestResponse = await noteApiClient.ReadNotesByPatient("123");
+
+        switch (webRequestResponse)
+        {
+            case WebRequestData<List<Note>> dataResponse:
+                List<Note> notes = dataResponse.Data;
+                Debug.Log("List of notes: ");
+                notes.ForEach(note => Debug.Log(note.id));
+                // TODO: Handle succes scenario.
+                break;
+            case WebRequestError errorResponse:
+                string errorMessage = errorResponse.ErrorMessage;
+                Debug.Log("Read notes error: " + errorMessage);
+                // TODO: Handle error scenario. Show the errormessage to the user.
+                break;
+            default:
+                throw new NotImplementedException("No implementation for webRequestResponse of class: " + webRequestResponse.GetType());
+        }
+
     }
 
     private void SelectOtherInputField()
