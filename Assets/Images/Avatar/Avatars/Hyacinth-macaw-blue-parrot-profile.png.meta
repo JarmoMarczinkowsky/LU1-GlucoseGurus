@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c573881e8edc3634096efdaa683200b0
+guid: 902a98a06bd86b746b8223a97ca2490d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 322861877128352221
-    second: LionAvatar_0
+      213: 5506038436860104797
+    second: Hyacinth-macaw-blue-parrot-profile_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LionAvatar_0
+      name: Hyacinth-macaw-blue-parrot-profile_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 320
-        height: 320
+        width: 1000
+        height: 1000
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dd150c9aa290b7400800000000000000
-      internalID: 322861877128352221
+      spriteID: d5091bc39c0696c40800000000000000
+      internalID: 5506038436860104797
       vertices: []
       indices: 
       edges: []

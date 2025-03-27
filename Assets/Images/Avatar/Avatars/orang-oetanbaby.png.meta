@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d75b0401702118e4f877ddd6c87c3da0
+guid: 55f54486188c3b94c97f70f30dba92c7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8747965791490666804
-    second: Wonderwoman_0
+      213: -5757735175642260457
+    second: orang-oetanbaby_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Wonderwoman_0
+      name: orang-oetanbaby_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 194
-        height: 259
+        width: 1594
+        height: 1594
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cce0eea167bf89680800000000000000
-      internalID: -8747965791490666804
+      spriteID: 71c52111d5a6810b0800000000000000
+      internalID: -5757735175642260457
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b8a7ea91f70cfb845b14f6c959a487a3
     internalID: 0
     vertices: []
     indices: 
@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      orang-oetanbaby_0: -5757735175642260457
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

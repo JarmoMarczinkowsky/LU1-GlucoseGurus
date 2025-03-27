@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5094a05c50bc5e5468b5dd366d9cfc4d
+guid: 9a0ba96d331cea84c90d69604670935d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8722714631636868230
-    second: Superwoman_0
+      213: 3113585593065763858
+    second: SignPost_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Superwoman_0
+      name: SignPost_0
       rect:
         serializedVersion: 2
-        x: 46
-        y: 39
-        width: 1354
-        height: 1345
+        x: 120
+        y: 125
+        width: 4606
+        height: 4832
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 68c51d71ebe4d0970800000000000000
-      internalID: 8722714631636868230
+      spriteID: 2147574b99da53b20800000000000000
+      internalID: 3113585593065763858
       vertices: []
       indices: 
       edges: []

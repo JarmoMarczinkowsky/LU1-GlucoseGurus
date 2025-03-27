@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 101ca2a607fc3fa468525b9bd96e9e9a
+guid: 0d2e214b0953a274291746ee29e8eb86
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2952595756560203481
-    second: JungleBoard_0
+      213: 7131637727401830811
+    second: Toecan_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: JungleBoard_0
+      name: Toecan_0
       rect:
         serializedVersion: 2
-        x: 98
-        y: 55
-        width: 416
-        height: 298
+        x: 0
+        y: 0
+        width: 742
+        height: 557
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9deb813723ab9f820800000000000000
-      internalID: 2952595756560203481
+      spriteID: b996f806abaa8f260800000000000000
+      internalID: 7131637727401830811
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 400c75bbd2b23c84ca72a53f6ea53c88
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      JungleBoard_0: 2952595756560203481
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

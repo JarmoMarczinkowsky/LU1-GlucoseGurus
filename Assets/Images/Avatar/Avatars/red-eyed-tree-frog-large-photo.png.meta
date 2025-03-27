@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3c0cf05c7ba439b499c7cd109b5ea163
+guid: b1857abaa37c69c48a88cf335d98be4f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2952595756560203481
-    second: JungleBoard_0
+      213: -8726430159506976022
+    second: red-eyed-tree-frog-large-photo_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: JungleBoard_0
+      name: red-eyed-tree-frog-large-photo_0
       rect:
         serializedVersion: 2
-        x: 97
-        y: 53
-        width: 418
-        height: 301
+        x: 0
+        y: 0
+        width: 700
+        height: 700
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9deb813723ab9f820800000000000000
-      internalID: 2952595756560203481
+      spriteID: ae2d459210e75e680800000000000000
+      internalID: -8726430159506976022
       vertices: []
       indices: 
       edges: []

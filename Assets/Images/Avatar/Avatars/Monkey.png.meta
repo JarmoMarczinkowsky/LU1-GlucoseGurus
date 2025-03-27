@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3de32fc4fed6849478ecf77634f932c9
+guid: 8a303ddd8e7ee1b42830d78f47c562e9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3782295498666948096
-    second: Goku_0
+      213: 973301482186294925
+    second: Monkey_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Goku_0
+      name: Monkey_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 500
-        height: 500
+        width: 364
+        height: 364
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 00ac56e8846928bc0800000000000000
-      internalID: -3782295498666948096
+      spriteID: d8643119a8cd18d00800000000000000
+      internalID: 973301482186294925
       vertices: []
       indices: 
       edges: []
