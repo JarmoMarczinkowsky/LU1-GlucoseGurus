@@ -2199,6 +2199,8 @@ MonoBehaviour:
   - {fileID: 5637702208661459297}
   - {fileID: 1910960994941498723}
   - {fileID: 3372275941201740455}
+  Mango: {fileID: -3968840770022985357, guid: ec9087fbbc0eda44e9dec2772b4d58c0, type: 3}
+  completedMango: {fileID: -8295138133037703532, guid: a1ddc5e551c3eff49b3cd40acf266792, type: 3}
 --- !u!1 &6126476808456493721
 GameObject:
   m_ObjectHideFlags: 0
