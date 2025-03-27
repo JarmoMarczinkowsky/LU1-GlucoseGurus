@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MangoCheckmark_0: -8295138133037703532
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
