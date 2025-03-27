@@ -12,6 +12,10 @@ public class NoteManagerScript : MonoBehaviour
     public Button btnCreate;
     public List<Image> lst_MoodImages;
 
+    [Header("Note creator")]
+    public GameObject menuNoteOverview;
+    public GameObject menuNoteCreator;
+
     private bool isTabPressed = false;
     private int tabIndex = 0;
     private int moodScale = 0;
@@ -20,7 +24,7 @@ public class NoteManagerScript : MonoBehaviour
     //https://coolors.co/8bc348-f5c523-fe5377-0b3954-bfd7ea
     void Start()
     {
-        
+        menuNoteCreator.SetActive(false);
     }
 
     // Update is called once per frame
@@ -63,20 +67,17 @@ public class NoteManagerScript : MonoBehaviour
         }
     }
 
-    //public void HoverEnterCreateButton()
-    //{
-         
-    //}
+    public void ShowNoteCreator()
+    {
+        menuNoteCreator.SetActive(true);
+        menuNoteOverview.SetActive(false);
+    }
 
-    //public void HoverExitCreateButton()
-    //{
-
-    //}
-
-    //public void ChangeTabIndexValue(int index)
-    //{
-    //    tabIndex = index + 1;
-    //}
+    public void CloseNoteCreator()
+    {
+        menuNoteCreator.SetActive(false);
+        menuNoteOverview.SetActive(true);
+    }
 
     public void ChangeMoodScale(int scale)
     {
