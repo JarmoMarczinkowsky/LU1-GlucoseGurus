@@ -1,9 +1,12 @@
 using System;
 using UnityEngine;
 
+[Serializable]
 public class Doctor
 {
-    public Guid id;
-    public string? name;
-    public string? specialization;
+    public string id;
+
+    public string name;
+
+    public string Specialization;
 }

@@ -1,8 +1,10 @@
 using System;
 using UnityEngine;
 
+[Serializable]
 public class Traject
 {
-    public Guid id;
-    public string? name;
+    public string id;
+
+    public string name;
 }

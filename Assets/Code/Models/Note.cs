@@ -3,9 +3,15 @@ using UnityEngine;
 
 public class Note
 {
-    public Guid id;
+    public string id;
+
     public DateTime date;
-    public string? text;
-    public Guid parentGuardianId;
-    public Guid patientId;
+
+    public string text;
+
+    public int userMood;
+
+    public string parentGuardianId;
+
+    public string patientId;
 }
