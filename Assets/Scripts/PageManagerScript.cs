@@ -35,10 +35,23 @@ public class PageManagerScript : MonoBehaviour
         }
     }
 
-    public void SwitchScene(string scenename)
+    ////public void SwitchScene(string scenename)
+    //{
+    //    Debug.Log("Gekozen voor: " + scenename);
+    //    //SceneManager.LoadScene(scenename);
+    //}
+
+    public void SwitchScene(string sceneName)
     {
-        Debug.Log("Gekozen voor: " + scenename);
-        //SceneManager.LoadScene(scenename);
+        if (LoginManagerScript.Instance != null && LoginManagerScript.Instance.IsLoggedIn)
+        {
+            Debug.Log("Scène wisselen naar: " + sceneName);
+            SceneManager.LoadScene(sceneName);
+        }
+        else
+        {
+            Debug.LogWarning("Je moet eerst inloggen voordat je van scene kunt wisselen!");
+        }
     }
 
     public void LoadRegister()
@@ -53,17 +66,17 @@ public class PageManagerScript : MonoBehaviour
 
     public void LoadTreatment()
     {
-        SceneManager.LoadScene("TreatmentPlanPage");
+        SwitchScene("TreatmentPlanPage");
     }
 
     public void LoadWelcomeKids()
     {
-        SceneManager.LoadScene("WelcomeChildrenPage");
+        SwitchScene("WelcomeChildrenPage");
     }
 
     public void LoadWelcomeParents()
     {
-        SceneManager.LoadScene("WelcomeParentsPage");
+        SwitchScene("WelcomeParentsPage");
     }
     #endregion Navigation
 
