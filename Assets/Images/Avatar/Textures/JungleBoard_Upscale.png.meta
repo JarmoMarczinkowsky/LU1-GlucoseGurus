@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 101ca2a607fc3fa468525b9bd96e9e9a
+guid: 19514b4301b44724291a3f91a5abf1f2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2952595756560203481
-    second: JungleBoard_0
+      213: 8710753676916942314
+    second: JungleBoard_Upscale_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: JungleBoard_0
+      name: JungleBoard_Upscale_0
       rect:
         serializedVersion: 2
-        x: 98
-        y: 55
-        width: 416
-        height: 298
+        x: 381
+        y: 205
+        width: 1677
+        height: 1209
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9deb813723ab9f820800000000000000
-      internalID: 2952595756560203481
+      spriteID: ae5ef8e4150d2e870800000000000000
+      internalID: 8710753676916942314
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 400c75bbd2b23c84ca72a53f6ea53c88
+    spriteID: 9bbf3e6d59e9aa141b8b7d0d59f9566d
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      JungleBoard_0: 2952595756560203481
+      JungleBoard_Upscale_0: 8710753676916942314
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
