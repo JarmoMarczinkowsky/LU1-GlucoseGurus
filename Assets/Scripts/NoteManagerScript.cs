@@ -115,6 +115,61 @@ public class NoteManagerScript : MonoBehaviour
         menuNoteOverview.SetActive(true);
     }
 
+    public void CreateNote()
+    {
+        if (!NewNoteValidation())
+        {
+            newNote = new Note()
+            {
+                text = lst_InputFields[1].text,
+                userMood = moodScale
+            };
+
+            CreateNewNote();
+        }
+    }
+
+    public bool NewNoteValidation()
+    {
+        if (string.IsNullOrWhiteSpace(lst_InputFields[0].text))
+        {
+            txbErrorNoteCreator.text = "Voer een titel in";
+            return false;
+        }
+        else if(string.IsNullOrWhiteSpace(lst_InputFields[1].text))
+        {
+            txbErrorNoteCreator.text = "Voer een notitie in";
+            return false;
+        }
+        else if (moodScale == 0)
+        {
+            txbErrorNoteCreator.text = "Selecteer een stemming";
+            return false;
+        }
+
+        return true;
+    }
+
+    public async void CreateNewNote()
+    {
+        IWebRequestReponse webRequestResponse = await noteApiClient.CreateNote(newNote);
+
+        switch (webRequestResponse)
+        {
+            case WebRequestData<Note> dataResponse:
+                newNote.id = dataResponse.Data.id;
+                // TODO: Handle succes scenario.
+                break;
+            case WebRequestError errorResponse:
+                string errorMessage = errorResponse.ErrorMessage;
+                Debug.Log("Create note error: " + errorMessage);
+                // TODO: Handle error scenario. Show the errormessage to the user.
+                break;
+            default:
+                throw new NotImplementedException("No implementation for webRequestResponse of class: " + webRequestResponse.GetType());
+        }
+    }
+
     public void ChangeMoodScale(int scale)
     {
         Debug.Log($"Clicked mood scale {scale}");
