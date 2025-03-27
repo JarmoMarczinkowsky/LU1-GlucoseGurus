@@ -1,6 +1,8 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +17,7 @@ public class NoteManagerScript : MonoBehaviour
     [Header("Note creator")]
     public GameObject menuNoteOverview;
     public GameObject menuNoteCreator;
+    public TMP_Text txbErrorNoteCreator;
 
     private bool isTabPressed = false;
     private int tabIndex = 0;
@@ -71,6 +74,7 @@ public class NoteManagerScript : MonoBehaviour
     {
         menuNoteCreator.SetActive(true);
         menuNoteOverview.SetActive(false);
+        txbErrorNoteCreator.text = "";
     }
 
     public void CloseNoteCreator()
@@ -81,6 +85,8 @@ public class NoteManagerScript : MonoBehaviour
 
     public void ChangeMoodScale(int scale)
     {
+        Debug.Log($"Clicked mood scale {scale}");
+
         moodScale = scale;
 
         for (int i = 0; i < lst_MoodImages.Count; i++)
@@ -94,6 +100,40 @@ public class NoteManagerScript : MonoBehaviour
                 else
                 {
                     lst_MoodImages[i].GetComponent<Image>().color = Color.gray;
+                }
+            }
+        }
+    }
+
+    public void HoverOverMoodScale(int scale)
+    {
+        Debug.Log($"Hover over mood scale {scale}");
+        for (int i = 0; i < lst_MoodImages.Count; i++)
+        {
+            if (lst_MoodImages[i] != null && moodScale == 0)
+            {
+                if (i == scale - 1)
+                {
+                    lst_MoodImages[i].GetComponent<Image>().color = new Color((float)0.75, (float)0.75, 1);
+                }
+                else
+                {
+                    lst_MoodImages[i].GetComponent<Image>().color = Color.white;
+                }
+            }
+        }
+    }
+
+    public void HoverExitMoodScale(int scale)
+    {
+        Debug.Log($"Hover exited mood scale {scale}");
+        for (int i = 0; i < lst_MoodImages.Count; i++)
+        {
+            if (lst_MoodImages[i] != null && moodScale == 0)
+            {
+                if (i == scale - 1)
+                {
+                    lst_MoodImages[i].GetComponent<Image>().color = Color.white;
                 }
             }
         }
