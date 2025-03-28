@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 21253033}
   - component: {fileID: 21253032}
   - component: {fileID: 21253034}
+  - component: {fileID: 21253035}
   m_Layer: 5
   m_Name: imgFrog
   m_TagString: Untagged
@@ -224,6 +225,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &21253035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21253030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.14199841, g: 1, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: 0}
+  m_UseGraphicAlpha: 1
 --- !u!1 &123961200
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,6 +252,7 @@ GameObject:
   - component: {fileID: 123961203}
   - component: {fileID: 123961202}
   - component: {fileID: 123961204}
+  - component: {fileID: 123961205}
   m_Layer: 5
   m_Name: imgSnake
   m_TagString: Untagged
@@ -329,6 +346,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &123961205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123961200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.14199841, g: 1, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: 0}
+  m_UseGraphicAlpha: 1
 --- !u!1 &138754984
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,6 +460,7 @@ GameObject:
   - component: {fileID: 141960373}
   - component: {fileID: 141960372}
   - component: {fileID: 141960374}
+  - component: {fileID: 141960375}
   m_Layer: 5
   m_Name: imgToucan
   m_TagString: Untagged
@@ -521,6 +554,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &141960375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141960370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.14199841, g: 1, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: 0}
+  m_UseGraphicAlpha: 1
 --- !u!1 &278960462
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,6 +692,7 @@ GameObject:
   - component: {fileID: 639720974}
   - component: {fileID: 639720973}
   - component: {fileID: 639720975}
+  - component: {fileID: 639720976}
   m_Layer: 5
   m_Name: imgIguana
   m_TagString: Untagged
@@ -737,6 +786,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &639720976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639720971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.14199841, g: 1, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: 0}
+  m_UseGraphicAlpha: 1
 --- !u!1 &641218929
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,7 +861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -937,6 +1001,7 @@ GameObject:
   - component: {fileID: 734812004}
   - component: {fileID: 734812003}
   - component: {fileID: 734812005}
+  - component: {fileID: 734812006}
   m_Layer: 5
   m_Name: imgShockedMonkey
   m_TagString: Untagged
@@ -1030,6 +1095,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &734812006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734812001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.14199841, g: 1, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: 0}
+  m_UseGraphicAlpha: 1
 --- !u!1 &760714720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1042,6 +1122,7 @@ GameObject:
   - component: {fileID: 760714723}
   - component: {fileID: 760714722}
   - component: {fileID: 760714724}
+  - component: {fileID: 760714725}
   m_Layer: 5
   m_Name: imgBabyMonkey
   m_TagString: Untagged
@@ -1135,6 +1216,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &760714725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760714720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.14199841, g: 1, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: 0}
+  m_UseGraphicAlpha: 1
 --- !u!1 &765675190
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,6 +1318,7 @@ GameObject:
   - component: {fileID: 906129611}
   - component: {fileID: 906129610}
   - component: {fileID: 906129612}
+  - component: {fileID: 906129613}
   m_Layer: 5
   m_Name: imgOcelot
   m_TagString: Untagged
@@ -1315,6 +1412,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &906129613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906129608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.14199841, g: 1, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: 0}
+  m_UseGraphicAlpha: 1
 --- !u!1 &927479191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1327,6 +1439,7 @@ GameObject:
   - component: {fileID: 927479194}
   - component: {fileID: 927479193}
   - component: {fileID: 927479195}
+  - component: {fileID: 927479196}
   m_Layer: 5
   m_Name: imgMacaw
   m_TagString: Untagged
@@ -1420,6 +1533,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &927479196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927479191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.14199841, g: 1, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: 0}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1225576841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1432,6 +1560,7 @@ GameObject:
   - component: {fileID: 1225576844}
   - component: {fileID: 1225576843}
   - component: {fileID: 1225576845}
+  - component: {fileID: 1225576846}
   m_Layer: 5
   m_Name: imgHyacinth
   m_TagString: Untagged
@@ -1525,6 +1654,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1225576846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225576841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.14199841, g: 1, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: 0}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1257741598
 GameObject:
   m_ObjectHideFlags: 0

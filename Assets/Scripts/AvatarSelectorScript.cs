@@ -30,7 +30,24 @@ public class AvatarSelectorScript : MonoBehaviour
 
         if (selectedImage <= ListAvatars.Count - 1)
         {
-            previewImage.GetComponent<UnityEngine.UI.Image>().sprite = ListAvatars[selectedImage].GetComponent<UnityEngine.UI.Image>().sprite;   
+            previewImage.GetComponent<UnityEngine.UI.Image>().sprite = ListAvatars[selectedImage].GetComponent<UnityEngine.UI.Image>().sprite;
+
+            for(int i = 0; i < ListAvatars.Count; i++)
+            {
+                
+                if (i == selectedImage)
+                {
+                    ListAvatars[i].GetComponent<Outline>().effectColor = new Color(1, 0, 0, 1);
+                    ListAvatars[i].GetComponent<Outline>().effectDistance = new Vector2(5, 5);
+                    Debug.Log("Set outline from image " + i);
+                }
+                else
+                {
+                    ListAvatars[i].GetComponent<Outline>().effectColor = new Color(0, 0, 0, 0);
+                    ListAvatars[i].GetComponent<Outline>().effectDistance = new Vector2(5, 5);
+                    Debug.Log("Reset outline from image " + i);
+                }
+            }
         }
     }
 }

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Toco-toucan_0: 607826804506265618
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

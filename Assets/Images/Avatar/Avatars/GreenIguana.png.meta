@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GreenIguana_0: -7395634890261394348
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
