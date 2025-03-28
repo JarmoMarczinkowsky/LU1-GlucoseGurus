@@ -202,7 +202,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2070514344}
         m_TargetAssemblyTypeName: PageManagerScript, Assembly-CSharp
         m_MethodName: LoadWelcomeParents
         m_Mode: 1
@@ -2265,7 +2265,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2070514344}
         m_TargetAssemblyTypeName: PageManagerScript, Assembly-CSharp
         m_MethodName: LoadWelcomeKids
         m_Mode: 1
