@@ -49,7 +49,7 @@ public class LoginManagerScript : MonoBehaviour
                 IsLoggedIn = true;
                 ShowMessage("Login succesvol!", Color.green);
                 Debug.Log("Gebruiker is ingelogd!");
-                LoadNextScene("Worlds");
+                
                 break;
             case WebRequestError errorResponse:
                 ShowMessage("Login fout: " + errorResponse.ErrorMessage, Color.red);

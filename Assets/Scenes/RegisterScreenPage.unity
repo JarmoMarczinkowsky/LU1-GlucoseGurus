@@ -445,6 +445,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7313026645286780678, guid: 4cfd906fdf3839c4095bbef74c239af6, type: 3}
   m_PrefabInstance: {fileID: 298793539}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &298793541 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 316467740212771627, guid: 4cfd906fdf3839c4095bbef74c239af6, type: 3}
+  m_PrefabInstance: {fileID: 298793539}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &301684061
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,7 +713,7 @@ MonoBehaviour:
   loginButton: {fileID: 0}
   registerButton: {fileID: 1421075704}
   statusText: {fileID: 0}
-  userApiClient: {fileID: 0}
+  userApiClient: {fileID: 1291890532}
 --- !u!4 &615644204
 Transform:
   m_ObjectHideFlags: 0
@@ -1625,8 +1630,8 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -1813,7 +1818,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1421075705}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 615644203}
+        m_TargetAssemblyTypeName: LoginManagerScript, Assembly-CSharp
+        m_MethodName: Register
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1421075705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2517,7 +2534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59572d2776521d54095ae1fe930e4062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DropdownMenu: {fileID: 0}
+  DropdownMenu: {fileID: 298793541}
 --- !u!4 &2070514345
 Transform:
   m_ObjectHideFlags: 0
