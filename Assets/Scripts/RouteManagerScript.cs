@@ -11,18 +11,27 @@ public class RouteManagerScript : MonoBehaviour
     public GameObject Basket;
     public List<Sprite> Baskets;
 
+    public int route;
+
 
     private int mangoCount = 0;
     private TreatmentplanManagerScript treatmentplanManagerScript;
-    private int route;
 
     void Start()
     {
         mangoCount = 0;
 
-        route = 1;
+        //retrieve the data from the patient
+        //then use the route info to set their route
+        
+        //route = 0;
 
-        if(route == 0)
+        //then give the data to the treatmentplanmanager, via the SetUp function
+        //or let the manager use the data from this manager
+
+
+
+        if (route == 0)
         {
             // Chose Route A
             RouteA.SetActive(true);
@@ -51,10 +60,4 @@ public class RouteManagerScript : MonoBehaviour
         }
     }
 
-
-
-    void Update()
-    {
-        
-    }
 }

@@ -31,17 +31,23 @@ public class TreatmentplanManagerScript : MonoBehaviour
 
     public void SetUp()
     {
+        // Turn all popup menus off, just incase
         foreach (var menu in PopUpMenus)
         {
             menu.gameObject.SetActive(false);
         }
 
+        // Then I need to add the description and videos/fotos that fit the context/topic
+
+        // If any steps were already completed I then need to set a small loop to complete any steps 
+        // (in this loop the visuals will already be updated aswell, because of how I wrote the function)
         //CompleteTreatmentInfo(0);
 
+        // Then we need to update the visuals, depending on where the user left off
         treatmentStep = 3;
-        //treatmentStep = (int)slider.value;
-        //StepCounter.text = "Stap " + treatmentStep + " voltooid";
         SetMango();
+
+        // lastly we need to show any of the reminders when it's neccesary
 
         operationStep = 3;
 
@@ -57,9 +63,7 @@ public class TreatmentplanManagerScript : MonoBehaviour
     #region TreatmentMoments
     public void SetMango()
     {
-        //treatmentStep = (int)slider.value;
-        //StepCounter.text = "Gebruiker bij stap: " + treatmentStep;
-
+        // all buttons are set to "not yet available"
         foreach (var button in TreatmentplanMoments)
         {
             //Color color;
@@ -71,20 +75,11 @@ public class TreatmentplanManagerScript : MonoBehaviour
             RectTransform rectTransform = button.GetComponent<RectTransform>();
             Vector2 newSize = new Vector2(130f, 130f);
             rectTransform.sizeDelta = newSize;
-
-
         }
+
+        // some buttons are set to "available"
         if (treatmentStep >= 0 && treatmentStep <= TreatmentplanMoments.Count)
         {
-            //for (int i = 0; i < treatmentStep; i++)
-            //{
-            //    var button = TreatmentplanMoments[i];
-
-            //    Color color;
-            //    ColorUtility.TryParseHtmlString("#F5F5F5", out color);
-            //    button.image.color = color;
-            //}
-
 
             for (int i = 0; i < treatmentStep; i++)
             {
@@ -100,8 +95,10 @@ public class TreatmentplanManagerScript : MonoBehaviour
             }
         }
 
+        // some buttons are set to "completeds"
         if (CompletedTreatmentplanMoments != null)
         {
+
             foreach (var button in CompletedTreatmentplanMoments)
             {
                 RectTransform rectTransform = button.GetComponent<RectTransform>();
@@ -119,6 +116,7 @@ public class TreatmentplanManagerScript : MonoBehaviour
 
     public void CompleteTreatmentInfo(int index)
     {
+        // Adds the completed steps to a seperate list, aslong as it wasn't added to that list before
         if(index < treatmentStep && !CompletedTreatmentplanMoments.Contains(TreatmentplanMoments[index]))
         {
             CompletedTreatmentplanMoments.Add(TreatmentplanMoments[index]);
@@ -126,9 +124,9 @@ public class TreatmentplanManagerScript : MonoBehaviour
             SetMango();
 
 
+            // Might have to do this during the set up, if other components require access to the routemanager aswell
             RouteManagerScript routeManager = FindFirstObjectByType<RouteManagerScript>();
             routeManager.SetBasket();
-
         }
 
         ClosePopUpMenu(index);
@@ -137,26 +135,32 @@ public class TreatmentplanManagerScript : MonoBehaviour
 
     #region EducationalContent
 
+    // Small function to turn the popup gameobject on
     public void ShowPopUpMenu(int popUpIndex)
     {
         PopUpMenus[popUpIndex].gameObject.SetActive(true);
     }
 
+    // Small function to turn the popup gameobject off
     public void ClosePopUpMenu(int popUpIndex)
     {
         PopUpMenus[popUpIndex].gameObject.SetActive(false);
     }
     #endregion EducationalContent
 
+
     #region Update
     public void Update()
     {
+        // Closes all the menus when the user presses escape
         if (Input.GetKey(KeyCode.Escape))
         {
             foreach (var menu in PopUpMenus)
             {
                 menu.gameObject.SetActive(false);
             }
+
+            // another loop for more menus
         }
         if(Input.GetKey(KeyCode.Space))
         {
