@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System;
 using System.Net;
 using UnityEngine;
 
@@ -7,35 +7,41 @@ public class NoteApiClient : MonoBehaviour
 {
     public WebClient webClient;
 
-    public async Awaitable<IWebRequestReponse> ReadNotes() 
+    public async Awaitable<IWebRequestReponse> ReadNotesByPatient(string patientId)
     {
-        string route = "/notes";
+        string route = "/notes" + "/patient/" + patientId;
+        IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route);
+        return ParseNoteListResponse(webRequestResponse);
+    }
 
+    public async Awaitable<IWebRequestReponse> ReadNotedByParentGuardian(string parentGuardianId)
+    {
+        string route = "/notes" + "/parentGuardian/" + parentGuardianId;
         IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route);
         return ParseNoteListResponse(webRequestResponse);
     }
 
     public async Awaitable<IWebRequestReponse> CreateNote(Note note)
     {
-        string route = "/notes/create";
+        string route = "/notes";
         string data = JsonUtility.ToJson(note);
-
         IWebRequestReponse webRequestResponse = await webClient.SendPostRequest(route, data);
         return ParseNoteResponse(webRequestResponse);
-    }
-
-    public async Awaitable<IWebRequestReponse> DeleteNote(string noteId)
-    {
-        string route = "/notes/" + noteId;
-        return await webClient.SendDeleteRequest(route);
     }
 
     public async Awaitable<IWebRequestReponse> UpdateNote(Note note)
     {
         string route = "/notes/" + note.id;
         string data = JsonUtility.ToJson(note);
+        IWebRequestReponse webRequestResponse = await webClient.SendPutRequest(route, data);
+        return ParseNoteResponse(webRequestResponse);
+    }
 
-        return await webClient.SendPutRequest(route, data);
+    public async Awaitable<IWebRequestReponse> DeleteNote(string noteId)
+    {
+        string route = "/notes/" + noteId;
+        IWebRequestReponse webRequestResponse = await webClient.SendDeleteRequest(route);
+        return ParseNoteResponse(webRequestResponse);
     }
 
     private IWebRequestReponse ParseNoteResponse(IWebRequestReponse webRequestResponse)
@@ -43,10 +49,9 @@ public class NoteApiClient : MonoBehaviour
         switch (webRequestResponse)
         {
             case WebRequestData<string> data:
-                Debug.Log("Response data raw: " + data.Data);
                 Note note = JsonUtility.FromJson<Note>(data.Data);
-                WebRequestData<Note> parsedWebRequestData = new WebRequestData<Note>(note);
-                return parsedWebRequestData;
+                WebRequestData<Note> response = new WebRequestData<Note>(note);
+                return response;
             default:
                 return webRequestResponse;
         }
@@ -57,14 +62,11 @@ public class NoteApiClient : MonoBehaviour
         switch (webRequestResponse)
         {
             case WebRequestData<string> data:
-                Debug.Log("Response data raw: " + data.Data);
                 List<Note> notes = JsonHelper.ParseJsonArray<Note>(data.Data);
-                WebRequestData<List<Note>> parsedWebRequestData = new WebRequestData<List<Note>>(notes);
-                return parsedWebRequestData;
+                WebRequestData<List<Note>> response = new WebRequestData<List<Note>>(notes);
+                return response;
             default:
                 return webRequestResponse;
         }
     }
-
 }
-

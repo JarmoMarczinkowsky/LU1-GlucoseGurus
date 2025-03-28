@@ -1,33 +1,30 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine.SceneManagement;
-using System.Net;
-using System.Xml.Linq;
-using UnityEngine.Networking;
-using System.Threading.Tasks;
+
 public class LoginManagerScript : MonoBehaviour
-{ 
-    [Header("Ui elements")]
+{
+    public static LoginManagerScript Instance;
+    public bool IsLoggedIn = false;
+
+    [Header("UI Elements")]
     public TMP_InputField username;
     public TMP_InputField password;
     public Button loginButton;
     public Button registerButton;
-    public Text statusText;
+    public TMP_Text statusText;
 
-    public void LoadNextScene(string sceneName)
+    private void Awake()
     {
-        SceneManager.LoadScene(sceneName);
-    }
-    private void ShowMessage(string message, Color color)
-    {
-        if (statusText != null)
+        if (Instance == null)
         {
-            statusText.text = message;
-            statusText.color = color;
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Zorgt ervoor dat dit object blijft bestaan bij scene-wisseling
+        }
+        else
+        {
+            Destroy(gameObject); // Voorkomt meerdere instanties van LoginManagerScript
         }
     }
 
@@ -38,13 +35,41 @@ public class LoginManagerScript : MonoBehaviour
             ShowMessage("Vul alle velden in!", Color.red);
             return;
         }
-        
 
+        // Simuleer succesvolle login (hier kun je later serverauthenticatie toevoegen)
+        IsLoggedIn = true;
         ShowMessage("Login succesvol!", Color.green);
-        LoadNextScene("WelcomeChildrenPage");
-    }
-    
-   
+        Debug.Log("Gebruiker is ingelogd!");
 
+    }
+
+    public void Logout()
+    {
+        IsLoggedIn = false;
+        ShowMessage("Je bent uitgelogd!", Color.yellow);
+        Debug.Log("Gebruiker is uitgelogd!");
+    }
+
+    private void ShowMessage(string message, Color color)
+    {
+        if (statusText != null)
+        {
+            statusText.text = message;
+            statusText.color = color;
+        }
+    }
+
+    public void LoadNextScene(string sceneName)
+    {
+        if (IsLoggedIn)
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+        else
+        {
+            ShowMessage("Je moet eerst inloggen!", Color.red);
+        }
+    }
 }
+
 

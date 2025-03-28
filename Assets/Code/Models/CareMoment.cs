@@ -1,9 +1,16 @@
 using System;
 using UnityEngine;
 
+[Serializable]
 public class CareMoment
 {
-    public Guid id;
-    public string? name;
-    public string? specialization;
+    public string id;
+
+    public string name;
+
+    public string url;
+
+    public byte[] Picture;
+
+    public int timeDurationInMin;
 }
