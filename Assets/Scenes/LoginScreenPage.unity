@@ -2003,11 +2003,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68464f6f0916d7a4f84f072b617d2f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsLoggedIn: 0
   username: {fileID: 1397077763}
   password: {fileID: 201926962}
   loginButton: {fileID: 209658788}
   registerButton: {fileID: 0}
   statusText: {fileID: 0}
+  userApiClient: {fileID: 0}
 --- !u!4 &1624239649
 Transform:
   m_ObjectHideFlags: 0
@@ -2321,7 +2323,7 @@ Transform:
   m_GameObject: {fileID: 1802187048}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -960, y: -540, z: 0}
+  m_LocalPosition: {x: -960, y: -540, z: -1}
   m_LocalScale: {x: 3.1586, y: 4.901245, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
