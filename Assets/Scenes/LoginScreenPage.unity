@@ -244,8 +244,8 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -359,7 +359,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 209658789}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1624239648}
+        m_TargetAssemblyTypeName: LoginManagerScript, Assembly-CSharp
+        m_MethodName: Login
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &209658789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1660,6 +1672,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194123678}
   m_CullTransparentMesh: 1
+--- !u!1 &1300907978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1300907982}
+  - component: {fileID: 1300907981}
+  - component: {fileID: 1300907980}
+  - component: {fileID: 1300907979}
+  m_Layer: 0
+  m_Name: ApiClient
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1300907979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300907978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed4f7f0e67c302469248224d4bac5a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  webClient: {fileID: 1300907981}
+--- !u!114 &1300907980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300907978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff3dfab3091941428e83d4b189192e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  webClient: {fileID: 1300907981}
+--- !u!114 &1300907981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300907978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2c86bd7546f1f94e9c106ea19a09157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseUrl: 
+--- !u!4 &1300907982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300907978}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.7669324, y: -0.38568798, z: 0.0436287}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1397077759
 GameObject:
   m_ObjectHideFlags: 0
@@ -2003,11 +2088,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68464f6f0916d7a4f84f072b617d2f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsLoggedIn: 0
   username: {fileID: 1397077763}
   password: {fileID: 201926962}
   loginButton: {fileID: 209658788}
   registerButton: {fileID: 0}
   statusText: {fileID: 0}
+  userApiClient: {fileID: 1300907979}
 --- !u!4 &1624239649
 Transform:
   m_ObjectHideFlags: 0
@@ -2321,7 +2408,7 @@ Transform:
   m_GameObject: {fileID: 1802187048}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -960, y: -540, z: 0}
+  m_LocalPosition: {x: -960, y: -540, z: -1}
   m_LocalScale: {x: 3.1586, y: 4.901245, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2625,3 +2712,4 @@ SceneRoots:
   - {fileID: 263182639}
   - {fileID: 1624239649}
   - {fileID: 2034172643}
+  - {fileID: 1300907982}

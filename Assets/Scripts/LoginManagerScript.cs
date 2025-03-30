@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
 
 public class LoginManagerScript : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class LoginManagerScript : MonoBehaviour
     public Button loginButton;
     public Button registerButton;
     public TMP_Text statusText;
+
+    [Header("Dependencies")]
+    public UserApiClient userApiClient;
 
     private void Awake()
     {
@@ -28,19 +32,61 @@ public class LoginManagerScript : MonoBehaviour
         }
     }
 
-    public void Login()
+    public async void Login()
     {
-        if (username.text == "" || password.text == "")
+        if (string.IsNullOrEmpty(username.text) || string.IsNullOrEmpty(password.text))
         {
             ShowMessage("Vul alle velden in!", Color.red);
             return;
         }
 
-        // Simuleer succesvolle login (hier kun je later serverauthenticatie toevoegen)
-        IsLoggedIn = true;
-        ShowMessage("Login succesvol!", Color.green);
-        Debug.Log("Gebruiker is ingelogd!");
+        User user = new User { email = username.text, password = password.text };
+        IWebRequestReponse response = await userApiClient.Login(user);
 
+        switch (response)
+        {
+            case WebRequestData<string> dataResponse:
+                IsLoggedIn = true;
+                ShowMessage("Login succesvol!", Color.green);
+                Debug.Log("Gebruiker is ingelogd!");
+                
+                break;
+            case WebRequestError errorResponse:
+                ShowMessage("Login fout: " + errorResponse.ErrorMessage, Color.red);
+                Debug.LogError("Login fout: " + errorResponse.ErrorMessage);
+                break;
+            default:
+                Debug.LogError("Onbekende login response ontvangen");
+                break;
+        }
+    }
+
+    public async void Register()
+    {
+        if (string.IsNullOrEmpty(username.text) || string.IsNullOrEmpty(password.text))
+        {
+            ShowMessage("Vul alle velden in!", Color.red);
+            return;
+        }
+
+        User user = new User { email = username.text, password = password.text };
+        IWebRequestReponse response = await userApiClient.Register(user);
+
+        switch (response)
+        {
+            case WebRequestData<string> dataResponse:
+                ShowMessage("Registratie succesvol!", Color.green);
+                Debug.Log("Gebruiker geregistreerd!");
+                Login(); // Automatisch inloggen na registratie
+                break;
+            case WebRequestError errorResponse:
+                ShowMessage("Fout bij registratie: " + errorResponse.ErrorMessage, Color.red);
+                Debug.LogError("Registratiefout: " + errorResponse.ErrorMessage);
+                break;
+            default:
+                Debug.LogError("Onbekende registratie response ontvangen");
+                break;
+        }
     }
 
     public void Logout()
@@ -71,5 +117,3 @@ public class LoginManagerScript : MonoBehaviour
         }
     }
 }
-
-
