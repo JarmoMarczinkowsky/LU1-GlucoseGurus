@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class ParentGuardianInfoScript : MonoBehaviour
 {
@@ -52,6 +53,9 @@ public class ParentGuardianInfoScript : MonoBehaviour
             case WebRequestData<ParentGuardian> dataResponse:
                 ShowMessage("Oudergegevens opgeslagen!", Color.green);
                 Debug.Log("Oudergegevens succesvol verzonden!");
+
+                LoadWelcomeKidsPage();
+
                 break;
             case WebRequestError errorResponse:
                 ShowMessage("Fout bij opslaan: " + errorResponse.ErrorMessage, Color.red);
@@ -70,5 +74,10 @@ public class ParentGuardianInfoScript : MonoBehaviour
             statusText.text = message;
             statusText.color = color;
         }
+    }
+
+    public void LoadWelcomeKidsPage()
+    {
+        SceneManager.LoadScene("WelcomeChildrenPage");
     }
 }

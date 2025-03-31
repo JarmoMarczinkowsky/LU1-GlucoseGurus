@@ -1,4 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Xml.Linq;
+
 //using System.Drawing;
 using NUnit.Framework;
 using TMPro;
@@ -20,16 +24,27 @@ public class TreatmentplanManagerScript : MonoBehaviour
     [Header("Lists")]
     public List<GameObject> PopUpMenus;
     public List<Button> TreatmentplanMoments;
+    public List<GameObject> RecoverReminders;
+
+    [Header("Sprites")]
     public Sprite Mango;
     public Sprite completedMango;
 
-    private List<Button> CompletedTreatmentplanMoments = new List<Button>();
+
+    [Header("Dependencies")]
+    //public TrajectApiClient trajectApiClient;
+    public TrajectCareMomentClient trajectCareMomentClient;
+
     //private variables
+    private List<Button> CompletedTreatmentplanMoments = new List<Button>();
     private int treatmentStep;
     private int operationStep;
-    private int route;
+    private int operationStep2;
+    private string route;
 
-    public void SetUp()
+    private List<TrajectCareMoment> TrajectCareMoments = new List<TrajectCareMoment>();
+
+    public async void SetUp(string _route)
     {
         // Turn all popup menus off, just incase
         foreach (var menu in PopUpMenus)
@@ -37,28 +52,94 @@ public class TreatmentplanManagerScript : MonoBehaviour
             menu.gameObject.SetActive(false);
         }
 
+        route = _route;
+
+        if(route == "A")
+        {
+            // Route A
+            operationStep = 5;
+            operationStep2 = 0;
+        }
+        if (route == "B")
+        {
+            // Route B
+            operationStep = 2;
+            operationStep2 = 6;
+        }
+
+
+        IWebRequestReponse webRequestResponse = await trajectCareMomentClient.ReadTrajectCareMoments();
+
+        switch (webRequestResponse)
+        {
+            case WebRequestData<List<TrajectCareMoment>> dataResponse:
+                List<TrajectCareMoment> _trajectCareMoments = dataResponse.Data;
+
+                _trajectCareMoments.ForEach(trajectCareMoment => TrajectCareMoments.Add(trajectCareMoment));
+
+                Debug.Log("List of traject caremoments: ");
+                _trajectCareMoments.ForEach(trajectCareMoment => Debug.Log(trajectCareMoment.name));
+
+
+                // TODO: Handle succes scenario.
+
+                break;
+            case WebRequestError errorResponse:
+                string errorMessage = errorResponse.ErrorMessage;
+                Debug.Log("Read notes error: " + errorMessage);
+
+                // TODO: Handle error scenario. Show the errormessage to the user.
+
+                break;
+            default:
+                throw new NotImplementedException("No implementation for webRequestResponse of class: " + webRequestResponse.GetType());
+        }
+
+        foreach (TrajectCareMoment trajectCareMoment in TrajectCareMoments)
+        {
+            if(trajectCareMoment.isCompleted == true)
+            {
+                // Completes any of the trajectcaremoments if they're done
+
+                // +/- 1 bij de step
+                CompletedTreatmentplanMoments.Add(TreatmentplanMoments[trajectCareMoment.step]);
+                //Debug.Log("Completed Step: " + trajectCareMoment.step);
+
+                // Then increases the number of mango's in the basket by one
+                RouteManagerScript routeManager = FindFirstObjectByType<RouteManagerScript>();
+                routeManager.SetBasket();
+
+                // Lastly, progresses the application to the next step of the program
+                treatmentStep++;
+            }
+        }
+
+
         // Then I need to add the description and videos/fotos that fit the context/topic
 
-        // If any steps were already completed I then need to set a small loop to complete any steps 
-        // (in this loop the visuals will already be updated aswell, because of how I wrote the function)
-        //CompleteTreatmentInfo(0);
+        if(treatmentStep == 0)
+        {
+            treatmentStep = 3;
+        }
 
         // Then we need to update the visuals, depending on where the user left off
-        treatmentStep = 3;
         SetMango();
 
+
         // lastly we need to show any of the reminders when it's neccesary
-
-        operationStep = 3;
-
         if (treatmentStep == operationStep)
         {
-            
             // Show recovery reminders
             // recoveryPopup.gameObject.SetActive(true);
             // Or something in this direction
         }
+        else if(treatmentStep == operationStep2 && operationStep2 !=0)
+        {
+            // recoveryPopup.gameObject.SetActive(true);
+            // Or something in this direction
+        }
     }
+
 
     #region TreatmentMoments
     public void SetMango()
@@ -78,6 +159,7 @@ public class TreatmentplanManagerScript : MonoBehaviour
         }
 
         // some buttons are set to "available"
+        // might have to delete this part
         if (treatmentStep >= 0 && treatmentStep <= TreatmentplanMoments.Count)
         {
 
@@ -95,7 +177,7 @@ public class TreatmentplanManagerScript : MonoBehaviour
             }
         }
 
-        // some buttons are set to "completeds"
+        // some buttons are set to "completed"
         if (CompletedTreatmentplanMoments != null)
         {
 
@@ -114,23 +196,47 @@ public class TreatmentplanManagerScript : MonoBehaviour
         }
     }
 
-    public void CompleteTreatmentInfo(int index)
+    public async void CompleteTreatmentInfo(int index)
     {
         // Adds the completed steps to a seperate list, aslong as it wasn't added to that list before
+        // Watch out for the "<" sign, it might have to be "<="
         if(index < treatmentStep && !CompletedTreatmentplanMoments.Contains(TreatmentplanMoments[index]))
         {
+            // update the trajectCaremoment
+            TrajectCareMoments[index].isCompleted = true;
+            IWebRequestReponse webRequestResponse = await trajectCareMomentClient.UpdateTrajectCareMoment(TrajectCareMoments[index]);
+
+
+            switch (webRequestResponse)
+            {
+                case WebRequestData<TrajectCareMoment> dataResponse:
+
+                    // TODO: Handle succes scenario.
+
+                    break;
+                case WebRequestError errorResponse:
+                    string errorMessage = errorResponse.ErrorMessage;
+                    Debug.Log("Read notes error: " + errorMessage);
+
+                    // TODO: Handle error scenario. Show the errormessage to the user.
+
+                    break;
+                default:
+                    throw new NotImplementedException("No implementation for webRequestResponse of class: " + webRequestResponse.GetType());
+            }
+
+            // This next line might be obsolete
             CompletedTreatmentplanMoments.Add(TreatmentplanMoments[index]);
-            Debug.Log("Completed Step: " + index);
+            
+            
             SetMango();
-
-
-            // Might have to do this during the set up, if other components require access to the routemanager aswell
             RouteManagerScript routeManager = FindFirstObjectByType<RouteManagerScript>();
             routeManager.SetBasket();
         }
-
         ClosePopUpMenu(index);
     }
+
+
     #endregion TreatmentMoments
 
     #region EducationalContent
