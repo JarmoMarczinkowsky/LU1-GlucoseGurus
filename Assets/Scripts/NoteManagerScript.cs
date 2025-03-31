@@ -27,6 +27,8 @@ public class NoteManagerScript : MonoBehaviour
     public NoteApiClient noteApiClient;
     public UserApiClient userApiClient;
 
+    [Header("Parrot")]
+    public GameObject parrot;
 
     private bool isTabPressed = false;
     private int tabIndex = 0;
@@ -275,5 +277,17 @@ public class NoteManagerScript : MonoBehaviour
     public void HoverExitCreationMenu()
     {
         hoverOverCreationMenu = false;
+    }
+
+    public void HoverOverParrot()
+    {
+        Image parrotImage = parrot.GetComponent<Image>();
+        parrotImage.color = new Color(0.75f, 0.75f, 0.75f, 1);
+    }
+
+    public void HoverExitParrot()
+    {
+        Image parrotImage = parrot.GetComponent<Image>();
+        parrotImage.color = new Color(1, 1, 1, 1);
     }
 }
