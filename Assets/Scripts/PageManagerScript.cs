@@ -78,6 +78,12 @@ public class PageManagerScript : MonoBehaviour
     {
         SwitchScene("WelcomeParentsPage");
     }
+
+
+    public void LoadPatientInfo()
+    {
+        SwitchScene("PatientInfoInputPage");
+    }
     #endregion Navigation
 
 }
