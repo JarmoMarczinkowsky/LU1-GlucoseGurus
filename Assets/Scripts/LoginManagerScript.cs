@@ -16,8 +16,21 @@ public class LoginManagerScript : MonoBehaviour
     public Button registerButton;
     public TMP_Text statusText;
 
+    [Header("Systems")]
+    public GameObject RegisterSystem;
+    public GameObject LoginSystem;
+    public GameObject TrajectSystem;
+    
+
     [Header("Dependencies")]
     public UserApiClient userApiClient;
+
+    public void Start()
+    {
+        RegisterSystem.SetActive(true);
+        LoginSystem.SetActive(true);
+        TrajectSystem.SetActive(false);
+    }
 
     private void Awake()
     {
@@ -49,7 +62,11 @@ public class LoginManagerScript : MonoBehaviour
                 IsLoggedIn = true;
                 ShowMessage("Login succesvol!", Color.green);
                 Debug.Log("Gebruiker is ingelogd!");
-                
+
+                RegisterSystem.SetActive(false);
+                LoginSystem.SetActive(false);
+                TrajectSystem.SetActive(true);
+
                 break;
             case WebRequestError errorResponse:
                 ShowMessage("Login fout: " + errorResponse.ErrorMessage, Color.red);
@@ -78,6 +95,9 @@ public class LoginManagerScript : MonoBehaviour
                 ShowMessage("Registratie succesvol!", Color.green);
                 Debug.Log("Gebruiker geregistreerd!");
                 Login(); // Automatisch inloggen na registratie
+
+
+
                 break;
             case WebRequestError errorResponse:
                 ShowMessage("Fout bij registratie: " + errorResponse.ErrorMessage, Color.red);
