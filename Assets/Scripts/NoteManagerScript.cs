@@ -14,6 +14,9 @@ public class NoteManagerScript : MonoBehaviour
     public Button btnCreate;
     public List<Image> lst_MoodImages;
 
+    [Header("Note overview")]
+    public GameObject noteField;
+
     [Header("Note creator")]
     public GameObject menuNoteOverview;
     public GameObject menuNoteCreator;
@@ -36,6 +39,7 @@ public class NoteManagerScript : MonoBehaviour
     {
         menuNoteCreator.SetActive(false);
 
+        ClearNotes();
         LoadNotes();
     }
 
@@ -43,6 +47,14 @@ public class NoteManagerScript : MonoBehaviour
     void Update()
     {
         SelectOtherInputField();
+    }
+
+    private void ClearNotes()
+    {
+        for (int i = noteField.transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(noteField.transform.GetChild(i).gameObject);
+        }
     }
 
     private async void LoadNotes()
@@ -56,6 +68,16 @@ public class NoteManagerScript : MonoBehaviour
                 Debug.Log("List of notes: ");
                 notes.ForEach(note => Debug.Log(note.id));
                 // TODO: Handle succes scenario.
+                foreach (var note in notes)
+                {
+                    GameObject retrievedNote = Instantiate(notePrefab, menuNoteOverview.transform);
+                    retrievedNote.transform.parent = noteField.transform;
+
+                    if (retrievedNote.GetComponentInChildren<TMP_Text>() != null)
+                    {
+                        retrievedNote.GetComponentInChildren<TMP_Text>().text = note.date.ToString();
+                    }
+                }
                 break;
             case WebRequestError errorResponse:
                 string errorMessage = errorResponse.ErrorMessage;
