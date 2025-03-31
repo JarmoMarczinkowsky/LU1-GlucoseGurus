@@ -32,6 +32,7 @@ public class NoteManagerScript : MonoBehaviour
     private int tabIndex = 0;
     private int moodScale = 0;
     private Note newNote;
+    private bool hoverOverCreationMenu = false;
 
     //Color palette:
     //https://coolors.co/8bc348-f5c523-fe5377-0b3954-bfd7ea
@@ -47,6 +48,8 @@ public class NoteManagerScript : MonoBehaviour
     void Update()
     {
         SelectOtherInputField();
+
+        CheckForClick();
     }
 
     private void ClearNotes()
@@ -121,6 +124,22 @@ public class NoteManagerScript : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Tab))
         {
             isTabPressed = false;
+        }
+    }
+
+    private void CheckForClick()
+    {
+        if (menuNoteCreator.activeSelf)
+        {
+            if(Input.GetMouseButtonDown(0) && !hoverOverCreationMenu)
+            {
+                Debug.Log("Niet gehoverd over menu");
+                CloseNoteCreator();
+            }
+            else if (Input.GetMouseButtonDown(0) && hoverOverCreationMenu)
+            {
+                Debug.Log("Aan het hoveren over menu");
+            }
         }
     }
 
@@ -246,5 +265,15 @@ public class NoteManagerScript : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void HoverOverCreationMenu()
+    {
+        hoverOverCreationMenu = true;
+    }
+
+    public void HoverExitCreationMenu()
+    {
+        hoverOverCreationMenu = false;
     }
 }
