@@ -51,7 +51,7 @@ public class NoteManagerScript : MonoBehaviour
 
     private void ClearNotes()
     {
-        for (int i = 0; i < noteField.transform.childCount; i++)
+        for (int i = noteField.transform.childCount - 1; i >= 0; i--)
         {
             Destroy(noteField.transform.GetChild(i).gameObject);
         }
