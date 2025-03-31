@@ -49,6 +49,14 @@ public class NoteManagerScript : MonoBehaviour
         SelectOtherInputField();
     }
 
+    private void ClearNotes()
+    {
+        for (int i = 0; i < noteField.transform.childCount; i++)
+        {
+            Destroy(noteField.transform.GetChild(i).gameObject);
+        }
+    }
+
     private async void LoadNotes()
     {
         IWebRequestReponse webRequestResponse = await noteApiClient.ReadNotesByPatient("123");
