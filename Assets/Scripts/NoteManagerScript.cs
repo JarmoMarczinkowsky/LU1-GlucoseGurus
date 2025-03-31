@@ -14,6 +14,9 @@ public class NoteManagerScript : MonoBehaviour
     public Button btnCreate;
     public List<Image> lst_MoodImages;
 
+    [Header("Note overview")]
+    public GameObject noteField;
+
     [Header("Note creator")]
     public GameObject menuNoteOverview;
     public GameObject menuNoteCreator;
@@ -24,11 +27,14 @@ public class NoteManagerScript : MonoBehaviour
     public NoteApiClient noteApiClient;
     public UserApiClient userApiClient;
 
+    [Header("Parrot")]
+    public GameObject parrot;
 
     private bool isTabPressed = false;
     private int tabIndex = 0;
     private int moodScale = 0;
     private Note newNote;
+    private bool hoverOverCreationMenu = false;
 
     //Color palette:
     //https://coolors.co/8bc348-f5c523-fe5377-0b3954-bfd7ea
@@ -36,6 +42,7 @@ public class NoteManagerScript : MonoBehaviour
     {
         menuNoteCreator.SetActive(false);
 
+        ClearNotes();
         LoadNotes();
     }
 
@@ -43,6 +50,16 @@ public class NoteManagerScript : MonoBehaviour
     void Update()
     {
         SelectOtherInputField();
+
+        CheckForClick();
+    }
+
+    private void ClearNotes()
+    {
+        for (int i = noteField.transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(noteField.transform.GetChild(i).gameObject);
+        }
     }
 
     private async void LoadNotes()
@@ -56,6 +73,16 @@ public class NoteManagerScript : MonoBehaviour
                 Debug.Log("List of notes: ");
                 notes.ForEach(note => Debug.Log(note.id));
                 // TODO: Handle succes scenario.
+                foreach (var note in notes)
+                {
+                    GameObject retrievedNote = Instantiate(notePrefab, menuNoteOverview.transform);
+                    retrievedNote.transform.parent = noteField.transform;
+
+                    if (retrievedNote.GetComponentInChildren<TMP_Text>() != null)
+                    {
+                        retrievedNote.GetComponentInChildren<TMP_Text>().text = note.date.ToString();
+                    }
+                }
                 break;
             case WebRequestError errorResponse:
                 string errorMessage = errorResponse.ErrorMessage;
@@ -99,6 +126,22 @@ public class NoteManagerScript : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Tab))
         {
             isTabPressed = false;
+        }
+    }
+
+    private void CheckForClick()
+    {
+        if (menuNoteCreator.activeSelf)
+        {
+            if(Input.GetMouseButtonDown(0) && !hoverOverCreationMenu)
+            {
+                Debug.Log("Niet gehoverd over menu");
+                CloseNoteCreator();
+            }
+            else if (Input.GetMouseButtonDown(0) && hoverOverCreationMenu)
+            {
+                Debug.Log("Aan het hoveren over menu");
+            }
         }
     }
 
@@ -224,5 +267,27 @@ public class NoteManagerScript : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void HoverOverCreationMenu()
+    {
+        hoverOverCreationMenu = true;
+    }
+
+    public void HoverExitCreationMenu()
+    {
+        hoverOverCreationMenu = false;
+    }
+
+    public void HoverOverParrot()
+    {
+        Image parrotImage = parrot.GetComponent<Image>();
+        parrotImage.color = new Color(0.75f, 0.75f, 0.75f, 1);
+    }
+
+    public void HoverExitParrot()
+    {
+        Image parrotImage = parrot.GetComponent<Image>();
+        parrotImage.color = new Color(1, 1, 1, 1);
     }
 }
