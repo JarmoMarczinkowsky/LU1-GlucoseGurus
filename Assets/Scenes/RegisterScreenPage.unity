@@ -1510,7 +1510,7 @@ MonoBehaviour:
   userApiClient: {fileID: 1291890532}
   noteApiClient: {fileID: 1291890541}
   careMomentApiClient: {fileID: 1291890540}
-  tajectCareMomentClient: {fileID: 1291890538}
+  trajectCareMomentClient: {fileID: 1291890538}
   trajectApiClient: {fileID: 1291890539}
   doctorApiClient: {fileID: 1291890537}
   patientApiClient: {fileID: 1291890533}
@@ -2392,7 +2392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8be86fb39e0c84148b3a4262c48bd40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  webClient: {fileID: 0}
+  webClient: {fileID: 1291890534}
 --- !u!114 &1291890539
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,7 +17,8 @@ public class RouteManagerScript : MonoBehaviour
     public List<Sprite> BasketSprites;
 
     [Header("Dependencies")]
-    public PatientApiClient patientApiClient;
+    private ApiClientHolder ApiClientHolder;
+    private PatientApiClient patientApiClient;
 
     private string route;
     private int mangoCount = 0;
@@ -25,29 +26,42 @@ public class RouteManagerScript : MonoBehaviour
 
     async void Start()
     {
+        ApiClientHolder = ApiClientHolder.instance;
+        patientApiClient = ApiClientHolder.patientApiClient;
+
         mangoCount = 0;
+
         route = "A";
 
         // Top, maar hoe krijg ik nu de parentguardianId?
         // Of kan ik de route info smokkelen van Mathijs zijn werk?
-
-        string ParentGuardian = "???";
-
         
+        string ParentGuardian = "3F2504E0-4F89-11D3-9A0C-0305E82C3301";
+        //string ParentGuardian = ApiClientHolder.parentGuardianId;
+
+
+
+
         IWebRequestReponse webRequestResponse = await patientApiClient.ReadPatientsByParentGuardian(ParentGuardian);
 
         switch (webRequestResponse)
         {
-            case WebRequestData<Patient> dataResponse:
+            case WebRequestData<List<Patient>> dataResponse:
 
-                Patient patient = dataResponse.Data;
+                Debug.Log(dataResponse);
+                Debug.Log(dataResponse.Data);
+
+                //var patientList = dataResponse.Data.ToArray;
+
+                Patient patient = dataResponse.Data[0];
                 route = patient.trajectId;
 
                 break;
             case WebRequestError errorResponse:
                 string errorMessage = errorResponse.ErrorMessage;
 
-                Debug.Log("Read notes error: " + errorMessage);
+                Debug.Log("Read patient error: " + errorMessage);
+
                 // TODO: Handle error scenario. Show the errormessage to the user.
                 break;
             default:
@@ -61,7 +75,7 @@ public class RouteManagerScript : MonoBehaviour
             RouteB.SetActive(false);
 
             treatmentplanManagerScript = RouteA.GetComponentInChildren<TreatmentplanManagerScript>();
-            treatmentplanManagerScript.SetUp(route);
+            treatmentplanManagerScript.SetUp("A");
         }
         else if (route == "B")
         {
@@ -70,7 +84,7 @@ public class RouteManagerScript : MonoBehaviour
             RouteB.SetActive(true);
 
             treatmentplanManagerScript = RouteB.GetComponentInChildren<TreatmentplanManagerScript>();
-            treatmentplanManagerScript.SetUp(route);
+            treatmentplanManagerScript.SetUp("B");
         }
     }
 

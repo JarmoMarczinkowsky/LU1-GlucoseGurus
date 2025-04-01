@@ -32,8 +32,11 @@ public class TreatmentplanManagerScript : MonoBehaviour
 
 
     [Header("Dependencies")]
-    //public TrajectApiClient trajectApiClient;
-    public TrajectCareMomentClient trajectCareMomentClient;
+    private ApiClientHolder ApiClientHolder;
+    private TrajectApiClient trajectApiClient;
+    private TrajectCareMomentClient trajectCareMomentClient;
+    private CareMomentApiClient careMomentApiClient;
+    private PatientApiClient patientApiClient;
 
     //private variables
     private List<Button> CompletedTreatmentplanMoments = new List<Button>();
@@ -46,13 +49,21 @@ public class TreatmentplanManagerScript : MonoBehaviour
 
     public async void SetUp(string _route)
     {
+        ApiClientHolder = ApiClientHolder.instance;
+
+        trajectApiClient = ApiClientHolder.trajectApiClient;
+        trajectCareMomentClient = ApiClientHolder.trajectCareMomentClient;
+        careMomentApiClient = ApiClientHolder.careMomentApiClient;
+        patientApiClient = ApiClientHolder.patientApiClient;
+
+        route = _route;
+
+
         // Turn all popup menus off, just incase
         foreach (var menu in PopUpMenus)
         {
             menu.gameObject.SetActive(false);
         }
-
-        route = _route;
 
         if(route == "A")
         {
@@ -66,7 +77,6 @@ public class TreatmentplanManagerScript : MonoBehaviour
             operationStep = 2;
             operationStep2 = 6;
         }
-
 
         IWebRequestReponse webRequestResponse = await trajectCareMomentClient.ReadTrajectCareMoments();
 
@@ -94,6 +104,8 @@ public class TreatmentplanManagerScript : MonoBehaviour
             default:
                 throw new NotImplementedException("No implementation for webRequestResponse of class: " + webRequestResponse.GetType());
         }
+
+
 
         foreach (TrajectCareMoment trajectCareMoment in TrajectCareMoments)
         {
