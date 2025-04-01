@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ApiClientHolder : MonoBehaviour
 {
-    [Header("Dependendies")]
+    [Header("Dependencies")]
     public UserApiClient userApiClient;
     public NoteApiClient noteApiClient;
     public CareMomentApiClient careMomentApiClient;
