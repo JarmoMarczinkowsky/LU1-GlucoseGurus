@@ -24,8 +24,9 @@ public class NoteManagerScript : MonoBehaviour
     public GameObject notePrefab;
 
     [Header("Dependencies")]
-    public NoteApiClient noteApiClient;
-    public UserApiClient userApiClient;
+    private ApiClientHolder ApiClientHolder;
+    private NoteApiClient noteApiClient;
+    private UserApiClient userApiClient;
 
     [Header("Parrot")]
     public GameObject parrot;
@@ -42,6 +43,10 @@ public class NoteManagerScript : MonoBehaviour
     //https://coolors.co/8bc348-f5c523-fe5377-0b3954-bfd7ea
     void Start()
     {
+        ApiClientHolder = ApiClientHolder.instance;
+        noteApiClient = ApiClientHolder.noteApiClient;
+        userApiClient = ApiClientHolder.userApiClient;
+
         menuNoteCreator.SetActive(false);
 
         ClearNotes();
