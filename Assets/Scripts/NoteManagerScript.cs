@@ -36,6 +36,8 @@ public class NoteManagerScript : MonoBehaviour
     private Note newNote;
     private bool hoverOverCreationMenu = false;
 
+    private List<string> motivationTexts = new List<string>() { "Vandaag ben ik sterker geweest dan Superman, omdat...", "Een moment waarop ik sterk was vandaag, was...", "Een kleine overwinning van vandaag was...", "Vandaag voelde ik mij een held, omdat...", "Ik ben trots op mijzelf vandaag, omdat..." };
+
     //Color palette:
     //https://coolors.co/8bc348-f5c523-fe5377-0b3954-bfd7ea
     void Start()
@@ -64,7 +66,9 @@ public class NoteManagerScript : MonoBehaviour
 
     private async void LoadNotes()
     {
-        IWebRequestReponse webRequestResponse = await noteApiClient.ReadNotesByPatient("123");
+        string loggedInUserId = "6FC94F41-00EB-4963-AC31-07DF79809A7D";
+
+        IWebRequestReponse webRequestResponse = await noteApiClient.ReadNotesByPatient(loggedInUserId);
 
         switch (webRequestResponse)
         {
@@ -150,6 +154,10 @@ public class NoteManagerScript : MonoBehaviour
         menuNoteCreator.SetActive(true);
         menuNoteOverview.SetActive(false);
         txbErrorNoteCreator.text = "";
+
+        int random = UnityEngine.Random.Range(0, motivationTexts.Count);
+
+        lst_InputFields[1].placeholder.GetComponent<TMP_Text>().text = motivationTexts[random];
     }
 
     public void CloseNoteCreator()

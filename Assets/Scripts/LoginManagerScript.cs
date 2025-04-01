@@ -34,6 +34,7 @@ public class LoginManagerScript : MonoBehaviour
         TrajectSystem.SetActive(false);
     }
 
+
     private void Awake()
     {
         if (Instance == null)
@@ -44,6 +45,26 @@ public class LoginManagerScript : MonoBehaviour
         else
         {
             Destroy(gameObject); // Voorkomt meerdere instanties van LoginManagerScript
+        }
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (username.isFocused)
+            {
+                password.Select();
+            }
+            if (password.isFocused)
+            {
+                username.Select();
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            Login();
         }
     }
 
