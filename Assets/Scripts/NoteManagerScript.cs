@@ -53,6 +53,7 @@ public class NoteManagerScript : MonoBehaviour
         LoadNotes();
     }
 
+
     // Update is called once per frame
     void Update()
     {
@@ -79,6 +80,11 @@ public class NoteManagerScript : MonoBehaviour
         {
             case WebRequestData<List<Note>> dataResponse:
                 List<Note> notes = dataResponse.Data;
+                if (notes != null)
+                {
+                    Debug.Log("Aantal notes in lijst: " + notes.Count);
+                }
+
                 Debug.Log("List of notes: ");
                 notes.ForEach(note => Debug.Log(note.id));
                 // TODO: Handle succes scenario.

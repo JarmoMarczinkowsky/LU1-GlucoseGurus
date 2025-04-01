@@ -65,6 +65,8 @@ public class NoteApiClient : MonoBehaviour
             case WebRequestData<string> data:
                 List<Note> notes = JsonHelper.ParseJsonArray<Note>(data.Data);
                 WebRequestData<List<Note>> response = new WebRequestData<List<Note>>(notes);
+
+                Debug.Log("Responsedata: " + response.Data);
                 return response;
             default:
                 return webRequestResponse;
