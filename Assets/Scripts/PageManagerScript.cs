@@ -16,8 +16,10 @@ public class PageManagerScript : MonoBehaviour
 
     void Start()
     {
-        DropdownMenu.SetActive(false);
-
+        if(DropdownMenu != null)
+        {
+            DropdownMenu.SetActive(false);
+        }
     }
 
     #region Navigation
@@ -71,7 +73,7 @@ public class PageManagerScript : MonoBehaviour
 
     public void LoadWelcomeKids()
     {
-        SwitchScene("WelcomeChildrenPage");
+        SwitchScene("WelcomeChildrenPage 1");
     }
 
     public void LoadWelcomeParents()

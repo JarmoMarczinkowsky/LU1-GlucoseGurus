@@ -10,6 +10,7 @@ public class NoteApiClient : MonoBehaviour
     public async Awaitable<IWebRequestReponse> ReadNotesByPatient(string patientId)
     {
         string route = "/notes" + "/patient/" + patientId;
+        Debug.Log($"Trying route: {route}");
         IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route);
         return ParseNoteListResponse(webRequestResponse);
     }

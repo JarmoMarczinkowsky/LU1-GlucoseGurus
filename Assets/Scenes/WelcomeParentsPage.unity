@@ -218,6 +218,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuBar
       objectReference: {fileID: 0}
+    - target: {fileID: 7243201285512714340, guid: 4cfd906fdf3839c4095bbef74c239af6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: SceneNotes
+      objectReference: {fileID: 0}
     - target: {fileID: 7313026645286780678, guid: 4cfd906fdf3839c4095bbef74c239af6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
