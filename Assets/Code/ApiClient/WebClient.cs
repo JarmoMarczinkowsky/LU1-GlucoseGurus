@@ -9,22 +9,29 @@ public class WebClient : MonoBehaviour
     public string baseUrl;
     private string token;
 
-    public static WebClient Singleton;
+    //public static WebClient Singleton;
+    public static WebClient instance;
+
+    public void Start()
+    {
+        Debug.Log("Nieuwe WebClent aangemaakt");
+    }
 
     private void Awake()
     {
-        if (Singleton == null)
+        if (instance == null)
         {
-            Singleton = this;
+            instance = this;
             DontDestroyOnLoad(this.gameObject);
 
+
             // Haal token op uit PlayerPrefs
-            if (PlayerPrefs.HasKey("AuthToken"))
-            {
-                string savedToken = PlayerPrefs.GetString("AuthToken");
-                SetToken(savedToken);
-                Debug.Log("Loaded saved token.");
-            }
+            //if (PlayerPrefs.HasKey("AuthToken"))
+            //{
+            //    string savedToken = PlayerPrefs.GetString("AuthToken");
+            //    SetToken(savedToken);
+            //    Debug.Log("Loaded saved token.:" + savedToken);
+            //}
         }
         else
         {
@@ -34,7 +41,10 @@ public class WebClient : MonoBehaviour
 
     public void SetToken(string token)
     {
+        Debug.Log("Received token: " + token);
+
         this.token = token;
+        Debug.Log("Set token to: " + this.token);
     }
 
     public async Awaitable<IWebRequestReponse> SendGetRequest(string route)
@@ -73,7 +83,10 @@ public class WebClient : MonoBehaviour
         webRequest.uploadHandler = new UploadHandlerRaw(dataInBytes);
         webRequest.downloadHandler = new DownloadHandlerBuffer();
         webRequest.SetRequestHeader("Content-Type", "application/json");
+
         AddToken(webRequest);
+
+
         return webRequest;
     }
 
@@ -87,12 +100,13 @@ public class WebClient : MonoBehaviour
                 string responseData = webRequest.downloadHandler.text;
                 Debug.Log("Response: " + responseData);
 
-                // Converteer JSON naar een object als de request een token bevat
-                if (responseData.Contains("accessToken")) // Simpele check om te zien of het een login-response is
-                {
-                    Token tokenData = JsonUtility.FromJson<Token>(responseData);
-                    return new WebRequestData<Token>(tokenData);
-                }
+                //// Converteer JSON naar een object als de request een token bevat
+                //if (responseData.Contains("accessToken")) // Simpele check om te zien of het een login-response is
+                //{
+                //    Debug.Log(responseData);
+                //    Token tokenData = JsonUtility.FromJson<Token>(responseData);
+                //    return new WebRequestData<Token>(tokenData);
+                //}
                 return new WebRequestData<string>(responseData);
 
             default:
@@ -103,7 +117,9 @@ public class WebClient : MonoBehaviour
 
     private void AddToken(UnityWebRequest webRequest)
     {
+        Debug.Log("Token: " + token);
         webRequest.SetRequestHeader("Authorization", "Bearer " + token);
+        Debug.Log("Added token to request: " + token);
     }
 
     private string RemoveIdFromJson(string json)
