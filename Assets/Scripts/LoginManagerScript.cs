@@ -12,6 +12,8 @@ public class LoginManagerScript : MonoBehaviour
     [Header("UI Elements")]
     public TMP_InputField username;
     public TMP_InputField password;
+    public TMP_InputField username1;
+    public TMP_InputField password1;
     public Button loginButton;
     public Button registerButton;
     public TMP_Text statusText;
@@ -32,6 +34,7 @@ public class LoginManagerScript : MonoBehaviour
         TrajectSystem.SetActive(false);
     }
 
+
     private void Awake()
     {
         if (Instance == null)
@@ -45,15 +48,35 @@ public class LoginManagerScript : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (username.isFocused)
+            {
+                password.Select();
+            }
+            if (password.isFocused)
+            {
+                username.Select();
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            Login();
+        }
+    }
+
     public async void Login()
     {
-        if (string.IsNullOrEmpty(username.text) || string.IsNullOrEmpty(password.text))
+        if (string.IsNullOrEmpty(username1.text) || string.IsNullOrEmpty(password1.text))
         {
             ShowMessage("Vul alle velden in!", Color.red);
             return;
         }
 
-        User user = new User { email = username.text, password = password.text };
+        User user = new User { email = username1.text, password = password1.text };
         IWebRequestReponse response = await userApiClient.Login(user);
 
         switch (response)
@@ -80,13 +103,13 @@ public class LoginManagerScript : MonoBehaviour
 
     public async void Register()
     {
-        if (string.IsNullOrEmpty(username.text) || string.IsNullOrEmpty(password.text))
+        if (string.IsNullOrEmpty(username1.text) || string.IsNullOrEmpty(password1.text))
         {
             ShowMessage("Vul alle velden in!", Color.red);
             return;
         }
 
-        User user = new User { email = username.text, password = password.text };
+        User user = new User { email = username1.text, password = password1.text };
         IWebRequestReponse response = await userApiClient.Register(user);
 
         switch (response)
@@ -94,10 +117,7 @@ public class LoginManagerScript : MonoBehaviour
             case WebRequestData<string> dataResponse:
                 ShowMessage("Registratie succesvol!", Color.green);
                 Debug.Log("Gebruiker geregistreerd!");
-                Login(); // Automatisch inloggen na registratie
-
-
-
+                Login();
                 break;
             case WebRequestError errorResponse:
                 ShowMessage("Fout bij registratie: " + errorResponse.ErrorMessage, Color.red);
