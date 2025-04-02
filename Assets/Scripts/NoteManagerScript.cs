@@ -93,6 +93,8 @@ public class NoteManagerScript : MonoBehaviour
                     GameObject retrievedNote = Instantiate(notePrefab, menuNoteOverview.transform);
                     retrievedNote.transform.parent = noteField.transform;
 
+                    retrievedNote.GetComponent<SingleNoteScript>().SetId(note.id);
+
                     if (retrievedNote.GetComponentInChildren<TMP_Text>() != null)
                     {
                         retrievedNote.GetComponentInChildren<TMP_Text>().text = note.date.ToString();
@@ -108,6 +110,21 @@ public class NoteManagerScript : MonoBehaviour
                 throw new NotImplementedException("No implementation for webRequestResponse of class: " + webRequestResponse.GetType());
         }
 
+    }
+
+    //public void ClickNote(string )
+    //{
+    //    string getIdFromNote = 
+    //}
+
+    public void HoverOverNote()
+    {
+        notePrefab.GetComponent<Image>().color = new Color(0.75f, 0.75f, 0.75f, 1);
+    }
+
+    public void HoverExitNote()
+    {
+        notePrefab.GetComponent<Image>().color = new Color(1, 1, 1, 1);
     }
 
     private void SelectOtherInputField()
