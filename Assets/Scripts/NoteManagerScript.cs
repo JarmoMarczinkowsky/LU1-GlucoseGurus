@@ -292,6 +292,9 @@ public class NoteManagerScript : MonoBehaviour
                 // TODO: Handle succes scenario.
                 CloseNoteCreator();
 
+                ClearNotes();
+                LoadNotes();
+
                 break;
             case WebRequestError errorResponse:
                 string errorMessage = errorResponse.ErrorMessage;
