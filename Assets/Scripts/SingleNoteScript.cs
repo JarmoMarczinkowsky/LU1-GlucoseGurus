@@ -16,7 +16,7 @@ public class SingleNoteScript : MonoBehaviour
         return _guid;
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnClick()
     {
         Debug.Log("Clicked on note with ID: " + _guid);
     }
