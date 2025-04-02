@@ -80,7 +80,7 @@ public class NoteManagerScript : MonoBehaviour
 
     private async void LoadNotes()
     {
-        string loggedInUserId = "6FC94F41-00EB-4963-AC31-07DF79809A7D";
+        string loggedInUserId = ApiClientHolder.Patient.id;
 
         IWebRequestReponse webRequestResponse = await noteApiClient.ReadNotesByPatient(loggedInUserId);
 
@@ -250,8 +250,8 @@ public class NoteManagerScript : MonoBehaviour
                 text = lst_InputFields[1].text.Trim(),
                 userMood = moodScale,
                 date = newDate,
-                parentGuardianId = "678CB822-6DE1-478C-8B03-F852E6CA51ED",
-                patientId = "6FC94F41-00EB-4963-AC31-07DF79809A7D"
+                parentGuardianId = ApiClientHolder.ParentGuardianId,
+                patientId = ApiClientHolder.Patient.id
             };
 
             CreateNewNote();
