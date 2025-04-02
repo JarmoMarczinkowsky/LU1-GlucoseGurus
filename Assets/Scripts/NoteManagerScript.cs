@@ -88,6 +88,11 @@ public class NoteManagerScript : MonoBehaviour
         {
             case WebRequestData<List<Note>> dataResponse:
                 notes = dataResponse.Data;
+
+                //sort notes by date
+                notes.Sort((x, y) => DateTime.Compare(DateTime.Parse(y.date), DateTime.Parse(x.date)));
+
+
                 if (notes != null)
                 {
                     Debug.Log("Aantal notes in lijst: " + notes.Count);
@@ -105,10 +110,12 @@ public class NoteManagerScript : MonoBehaviour
 
                     retrievedNote.transform.parent = noteField.transform;
 
+                    string formatDate = DateTime.Parse(note.date).ToString("dd-MM-yyyy HH:mm");
+
                     //retrievedNote.GetComponent<SingleNoteScript>().SetId(note.id);
                     if (retrievedNote.GetComponentInChildren<TMP_Text>() != null)
                     {
-                        retrievedNote.GetComponentInChildren<TMP_Text>().text = note.date.ToString();
+                        retrievedNote.GetComponentInChildren<TMP_Text>().text = formatDate;
                     }
                 }
                 break;
