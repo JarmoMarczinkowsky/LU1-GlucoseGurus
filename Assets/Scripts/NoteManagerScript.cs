@@ -290,6 +290,8 @@ public class NoteManagerScript : MonoBehaviour
             case WebRequestData<Note> dataResponse:
                 newNote.id = dataResponse.Data.id;
                 // TODO: Handle succes scenario.
+                CloseNoteCreator();
+
                 break;
             case WebRequestError errorResponse:
                 string errorMessage = errorResponse.ErrorMessage;
