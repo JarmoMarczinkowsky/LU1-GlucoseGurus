@@ -6,7 +6,7 @@ public class ApiClientHolder : MonoBehaviour
     public UserApiClient userApiClient;
     public NoteApiClient noteApiClient;
     public CareMomentApiClient careMomentApiClient;
-    public TrajectCareMomentClient tajectCareMomentClient;
+    public TrajectCareMomentClient trajectCareMomentClient;
     public TrajectApiClient trajectApiClient;
     public DoctorApiClient doctorApiClient;
     public PatientApiClient patientApiClient;

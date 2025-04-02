@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/LoginScreenPage.unity
     guid: e31fd8c95b03d8248a8c50abaa053555
   - enabled: 1
-    path: Assets/Scenes/PatientInfoInputPage.unity
+    path: Assets/Scenes/ParentInfoInputPage.unity
     guid: 142b8dd0331805146b4cefbb5ecfc5de
   - enabled: 1
     path: Assets/Scenes/RegisterScreenPage.unity
