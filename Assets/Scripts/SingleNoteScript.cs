@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SingleNoteScript : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class SingleNoteScript : MonoBehaviour
     public void SetId(string guid)
     {
         _guid = guid;
+        Debug.Log("Set id to: " + _guid);
     }
 
     public string GetId()
@@ -14,9 +16,9 @@ public class SingleNoteScript : MonoBehaviour
         return _guid;
     }
 
-    public void OnMouseUpAsButton()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Clicked on note with id: " + _guid);
+        Debug.Log("Clicked on note with ID: " + _guid);
     }
 }
 

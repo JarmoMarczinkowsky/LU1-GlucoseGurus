@@ -21,7 +21,7 @@ public class NoteManagerScript : MonoBehaviour
     public GameObject menuNoteOverview;
     public GameObject menuNoteCreator;
     public TMP_Text txbErrorNoteCreator;
-    public GameObject notePrefab;
+    public Button notePrefab;
 
     [Header("Dependencies")]
     private ApiClientHolder ApiClientHolder;
@@ -90,11 +90,14 @@ public class NoteManagerScript : MonoBehaviour
                 // TODO: Handle succes scenario.
                 foreach (var note in notes)
                 {
-                    GameObject retrievedNote = Instantiate(notePrefab, menuNoteOverview.transform);
+                    Button retrievedNote = Instantiate(notePrefab, menuNoteOverview.transform); 
+                    Debug.Log("Created button for note: " + note.id);
+
+                    retrievedNote.onClick.AddListener(() => ClickNote(note.id));
+
                     retrievedNote.transform.parent = noteField.transform;
 
-                    retrievedNote.GetComponent<SingleNoteScript>().SetId(note.id);
-
+                    //retrievedNote.GetComponent<SingleNoteScript>().SetId(note.id);
                     if (retrievedNote.GetComponentInChildren<TMP_Text>() != null)
                     {
                         retrievedNote.GetComponentInChildren<TMP_Text>().text = note.date.ToString();
@@ -112,10 +115,10 @@ public class NoteManagerScript : MonoBehaviour
 
     }
 
-    //public void ClickNote(string )
-    //{
-    //    string getIdFromNote = 
-    //}
+    public void ClickNote(string noteId )
+    {
+        Debug.Log("Note clicked: " + noteId);
+    }
 
     public void HoverOverNote()
     {
