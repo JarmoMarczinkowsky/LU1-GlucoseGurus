@@ -45,15 +45,15 @@ public class PageManagerScript : MonoBehaviour
 
     public void SwitchScene(string sceneName)
     {
-        if (LoginManagerScript.Instance != null && LoginManagerScript.Instance.IsLoggedIn)
-        {
-            Debug.Log("Scène wisselen naar: " + sceneName);
+        //if (LoginManagerScript.Instance != null && LoginManagerScript.Instance.IsLoggedIn)
+        //{
+        //    Debug.Log("Scène wisselen naar: " + sceneName);
             SceneManager.LoadScene(sceneName);
-        }
-        else
-        {
-            Debug.LogWarning("Je moet eerst inloggen voordat je van scene kunt wisselen!");
-        }
+        //}
+        //else
+        //{
+        //    Debug.LogWarning("Je moet eerst inloggen voordat je van scene kunt wisselen!");
+        //}
     }
 
     public void LoadRegister()

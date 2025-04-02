@@ -87,10 +87,8 @@ public class TreatmentplanManagerScript : MonoBehaviour
 
                 _trajectCareMoments.ForEach(trajectCareMoment => TrajectCareMoments.Add(trajectCareMoment));
 
-                Debug.Log("List of traject caremoments: ");
-                _trajectCareMoments.ForEach(trajectCareMoment => Debug.Log(trajectCareMoment.name));
-
-
+                //Debug.Log("List of traject caremoments: ");
+                //_trajectCareMoments.ForEach(trajectCareMoment => Debug.Log(trajectCareMoment.name));
                 // TODO: Handle succes scenario.
 
                 break;
@@ -104,8 +102,6 @@ public class TreatmentplanManagerScript : MonoBehaviour
             default:
                 throw new NotImplementedException("No implementation for webRequestResponse of class: " + webRequestResponse.GetType());
         }
-
-
 
         foreach (TrajectCareMoment trajectCareMoment in TrajectCareMoments)
         {
@@ -126,13 +122,8 @@ public class TreatmentplanManagerScript : MonoBehaviour
             }
         }
 
-
         // Then I need to add the description and videos/fotos that fit the context/topic
-
-        if(treatmentStep == 0)
-        {
-            treatmentStep = 3;
-        }
+        // Currently not neccesary 
 
         // Then we need to update the visuals, depending on where the user left off
         SetMango();
@@ -170,24 +161,24 @@ public class TreatmentplanManagerScript : MonoBehaviour
             rectTransform.sizeDelta = newSize;
         }
 
-        // some buttons are set to "available"
-        // might have to delete this part
-        if (treatmentStep >= 0 && treatmentStep <= TreatmentplanMoments.Count)
-        {
+        //// some buttons are set to "available"
+        //// might have to delete this part
+        //if (treatmentStep >= 0 && treatmentStep <= TreatmentplanMoments.Count)
+        //{
 
-            for (int i = 0; i < treatmentStep; i++)
-            {
-                var button = TreatmentplanMoments[i];
+        //    for (int i = 0; i < treatmentStep; i++)
+        //    {
+        //        var button = TreatmentplanMoments[i];
 
-                Color color;
-                ColorUtility.TryParseHtmlString("#F5F5F5", out color);
-                button.image.color = color;
+        //        Color color;
+        //        ColorUtility.TryParseHtmlString("#F5F5F5", out color);
+        //        button.image.color = color;
 
-                RectTransform rectTransform = button.GetComponent<RectTransform>();
-                Vector2 newSize = new Vector2(200f, 200f);
-                rectTransform.sizeDelta = newSize;
-            }
-        }
+        //        RectTransform rectTransform = button.GetComponent<RectTransform>();
+        //        Vector2 newSize = new Vector2(200f, 200f);
+        //        rectTransform.sizeDelta = newSize;
+        //    }
+        //}
 
         // some buttons are set to "completed"
         if (CompletedTreatmentplanMoments != null)
@@ -218,12 +209,17 @@ public class TreatmentplanManagerScript : MonoBehaviour
             TrajectCareMoments[index].isCompleted = true;
             IWebRequestReponse webRequestResponse = await trajectCareMomentClient.UpdateTrajectCareMoment(TrajectCareMoments[index]);
 
-
             switch (webRequestResponse)
             {
                 case WebRequestData<TrajectCareMoment> dataResponse:
 
                     // TODO: Handle succes scenario.
+
+                    CompletedTreatmentplanMoments.Add(TreatmentplanMoments[index]);
+
+                    SetMango();
+                    RouteManagerScript routeManager = FindFirstObjectByType<RouteManagerScript>();
+                    routeManager.SetBasket();
 
                     break;
                 case WebRequestError errorResponse:
@@ -235,16 +231,9 @@ public class TreatmentplanManagerScript : MonoBehaviour
                     break;
                 default:
                     throw new NotImplementedException("No implementation for webRequestResponse of class: " + webRequestResponse.GetType());
-            }
-
-            // This next line might be obsolete
-            CompletedTreatmentplanMoments.Add(TreatmentplanMoments[index]);
-            
-            
-            SetMango();
-            RouteManagerScript routeManager = FindFirstObjectByType<RouteManagerScript>();
-            routeManager.SetBasket();
+            }            
         }
+
         ClosePopUpMenu(index);
     }
 
@@ -265,7 +254,6 @@ public class TreatmentplanManagerScript : MonoBehaviour
         PopUpMenus[popUpIndex].gameObject.SetActive(false);
     }
     #endregion EducationalContent
-
 
     #region Update
     public void Update()

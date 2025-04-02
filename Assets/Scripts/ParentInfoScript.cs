@@ -16,19 +16,14 @@ public class ParentGuardianInfoScript : MonoBehaviour
     public TMP_Text statusText;
 
     [Header("Dependencies")]
-    public ParentGuardianApiClient parentGuardianApiClient;
+    private ParentGuardianApiClient parentGuardianApiClient;
+    private ApiClientHolder apiClientHolder;
 
-    private void Awake()
+
+    public void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        apiClientHolder = ApiClientHolder.instance;
+        parentGuardianApiClient = apiClientHolder.parentGuardianApiClient;
     }
 
     public async void SaveParentGuardianInfo()
@@ -39,9 +34,11 @@ public class ParentGuardianInfoScript : MonoBehaviour
             return;
         }
 
+        ApiClientHolder.ParentGuardianId = System.Guid.NewGuid().ToString();
+
         ParentGuardian parentGuardian = new ParentGuardian
         {
-            id = System.Guid.NewGuid().ToString(),
+            id = ApiClientHolder.ParentGuardianId,
             FirstName = FirstNameInput.text,
             LastName = LastNameInput.text
         };
@@ -54,7 +51,8 @@ public class ParentGuardianInfoScript : MonoBehaviour
                 ShowMessage("Oudergegevens opgeslagen!", Color.green);
                 Debug.Log("Oudergegevens succesvol verzonden!");
 
-                LoadWelcomeKidsPage();
+                SceneManager.LoadScene("PatientInfoInputPage 1");
+
 
                 break;
             case WebRequestError errorResponse:
@@ -76,8 +74,4 @@ public class ParentGuardianInfoScript : MonoBehaviour
         }
     }
 
-    public void LoadWelcomeKidsPage()
-    {
-        SceneManager.LoadScene("WelcomeChildrenPage");
-    }
 }

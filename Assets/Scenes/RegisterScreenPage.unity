@@ -202,16 +202,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2070514344}
-        m_TargetAssemblyTypeName: PageManagerScript, Assembly-CSharp
+      - m_Target: {fileID: 1533828430}
+        m_TargetAssemblyTypeName: LoginManagerScript, Assembly-CSharp
         m_MethodName: LoadWelcomeParents
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: A
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &129579794
@@ -1515,6 +1515,8 @@ MonoBehaviour:
   doctorApiClient: {fileID: 1291890537}
   patientApiClient: {fileID: 1291890533}
   parentGuardianApiClient: {fileID: 1291890536}
+  ParentGuardianId: 
+  Route: 
 --- !u!4 &979502339
 Transform:
   m_ObjectHideFlags: 0
@@ -2805,7 +2807,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68464f6f0916d7a4f84f072b617d2f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsLoggedIn: 0
   username: {fileID: 1014512469}
   password: {fileID: 1228295387}
   username1: {fileID: 1014512469}
@@ -2816,7 +2817,6 @@ MonoBehaviour:
   RegisterSystem: {fileID: 2082477498}
   LoginSystem: {fileID: 1185701149}
   TrajectSystem: {fileID: 863219330}
-  userApiClient: {fileID: 1291890532}
 --- !u!4 &1533828431
 Transform:
   m_ObjectHideFlags: 0
@@ -3072,16 +3072,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2070514344}
-        m_TargetAssemblyTypeName: PageManagerScript, Assembly-CSharp
+      - m_Target: {fileID: 1533828430}
+        m_TargetAssemblyTypeName: LoginManagerScript, Assembly-CSharp
         m_MethodName: LoadWelcomeParents
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: B
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1963551997

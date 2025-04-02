@@ -10,15 +10,16 @@ public class PatientApiClient : MonoBehaviour
 
     public async Awaitable<IWebRequestReponse> ReadPatientsByParentGuardian(string parentGuardianId)
     {
-        string route = "/parentGuardians/" + parentGuardianId + "/patients";
+        string route = "/parentGuardians/" + parentGuardianId + "/patients/";
+        string data = JsonUtility.ToJson(parentGuardianId);
 
-        IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route);
+        IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route, data);
         return ParsePatientListResponse(webRequestResponse);
     }
 
     public async Awaitable<IWebRequestReponse> CreatePatient(Patient patient)
     {
-        string route = "/parentGuardians" + patient.parentGuardianId + "/patients";
+        string route = "/parentGuardians/" + patient.parentGuardianId + "/patients/";
         string data = JsonUtility.ToJson(patient);
 
         IWebRequestReponse webRequestResponse = await webClient.SendPostRequest(route, data);
@@ -27,7 +28,7 @@ public class PatientApiClient : MonoBehaviour
 
     public async Awaitable<IWebRequestReponse> UpdatePatient(Patient patient)
     {
-        string route = "/parentGuardians/" + patient.parentGuardianId + "/patients/" + patient.id;
+        string route = "/parentGuardians/" + patient.parentGuardianId + "/patients/" + patient.id + "/";
         string data = JsonUtility.ToJson(patient);
 
         IWebRequestReponse webRequestResponse = await webClient.SendPutRequest(route, data);
@@ -36,7 +37,7 @@ public class PatientApiClient : MonoBehaviour
 
     public async Awaitable<IWebRequestReponse> DeletePatient(string parentGuardianId, string patientId)
     {
-        string route = "/parentGuardians/" + parentGuardianId + "/patients/" + patientId;
+        string route = "/parentGuardians/" + parentGuardianId + "/patients/" + patientId + "/";
 
         IWebRequestReponse webRequestResponse = await webClient.SendDeleteRequest(route);
         return ParsePatientResponse(webRequestResponse);
