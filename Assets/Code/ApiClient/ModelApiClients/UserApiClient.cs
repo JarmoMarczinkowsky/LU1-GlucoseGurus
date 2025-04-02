@@ -23,7 +23,7 @@ public class UserApiClient : MonoBehaviour
     //}
     public async Awaitable<IWebRequestReponse> Register(User user)
     {
-        string route = "/account/register";
+        string route = "/account/register/";
         string data = JsonUtility.ToJson(user);
 
         return await webClient.SendPostRequest(route, data);
@@ -32,7 +32,7 @@ public class UserApiClient : MonoBehaviour
     public async Awaitable<IWebRequestReponse> Login(User user)
     {
         string json = JsonUtility.ToJson(user);
-        var response = await webClient.SendPostRequest("/account/login", json);
+        var response = await webClient.SendPostRequest("/account/login/", json);
 
         //switch(response)
         //{

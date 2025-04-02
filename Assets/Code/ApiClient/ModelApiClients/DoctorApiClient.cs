@@ -10,7 +10,7 @@ public class DoctorApiClient : MonoBehaviour
 
     public async Awaitable<IWebRequestReponse> ReadDoctors()
     {
-        string route = "/doctors";
+        string route = "/doctors/";
 
         IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route);
         return ParseDoctorListResponse(webRequestResponse);

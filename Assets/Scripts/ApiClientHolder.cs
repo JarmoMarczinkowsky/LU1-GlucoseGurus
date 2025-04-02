@@ -1,4 +1,9 @@
 using UnityEngine;
+//using TMPro;
+//using UnityEngine.UI;
+//using System.Threading.Tasks;
+//using System.Collections.Generic;
+//using UnityEngine.SceneManagement;
 
 public class ApiClientHolder : MonoBehaviour
 {
@@ -11,6 +16,11 @@ public class ApiClientHolder : MonoBehaviour
     public DoctorApiClient doctorApiClient;
     public PatientApiClient patientApiClient;
     public ParentGuardianApiClient parentGuardianApiClient;
+
+    [Header("ImportantInfo")]
+    public static string ParentGuardianId;
+    public static string Route;
+    public static Patient Patient;
 
 
     public static ApiClientHolder instance;

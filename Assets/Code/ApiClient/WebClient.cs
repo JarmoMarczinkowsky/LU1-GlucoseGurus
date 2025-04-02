@@ -49,6 +49,11 @@ public class WebClient : MonoBehaviour
         UnityWebRequest webRequest = CreateWebRequest("GET", route, "");
         return await SendWebRequest(webRequest);
     }
+    public async Awaitable<IWebRequestReponse> SendGetRequest(string route, string data)
+    {
+        UnityWebRequest webRequest = CreateWebRequest("GET", route, data);
+        return await SendWebRequest(webRequest);
+    }
 
     public async Awaitable<IWebRequestReponse> SendPostRequest(string route, string data)
     {

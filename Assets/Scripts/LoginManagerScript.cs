@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 public class LoginManagerScript : MonoBehaviour
 {
@@ -24,17 +25,24 @@ public class LoginManagerScript : MonoBehaviour
     public GameObject TrajectSystem;
     
 
-    [Header("Dependencies")]
-    public UserApiClient userApiClient;
+    [Header("Dependencies")]    
+    private ApiClientHolder ApiClientHolder;
+    private UserApiClient userApiClient;
+    private ParentGuardianApiClient parentGuardianApiClient;
+    private PatientApiClient patientApiClient;
 
     public void Start()
     {
+        ApiClientHolder = ApiClientHolder.instance;
+        userApiClient = ApiClientHolder.userApiClient;
+        parentGuardianApiClient = ApiClientHolder.parentGuardianApiClient;
+        patientApiClient = ApiClientHolder.patientApiClient;
+
         RegisterSystem.SetActive(true);
         LoginSystem.SetActive(true);
         TrajectSystem.SetActive(false);
     }
 
-   
     public async void Login()
     {
         if (string.IsNullOrEmpty(username1.text) || string.IsNullOrEmpty(password1.text))
@@ -49,13 +57,12 @@ public class LoginManagerScript : MonoBehaviour
         switch (response)
         {
             case WebRequestData<string> dataResponse:
-                //IsLoggedIn = true;
                 ShowMessage("Login succesvol!", Color.green);
                 Debug.Log("Gebruiker is ingelogd!");
 
-                RegisterSystem.SetActive(false);
-                LoginSystem.SetActive(false);
-                TrajectSystem.SetActive(true);
+                ReadPatientInfo();
+
+                SceneManager.LoadScene("TreatmentPlanPage");
 
                 break;
             case WebRequestError errorResponse:
@@ -64,6 +71,45 @@ public class LoginManagerScript : MonoBehaviour
                 break;
             default:
                 Debug.LogError("Onbekende login response ontvangen");
+                break;
+        }
+    }
+
+    private async void ReadPatientInfo()
+    {
+        string parentGuardianId = "";
+
+        IWebRequestReponse response3 = await parentGuardianApiClient.ReadParentGuardians();
+
+        switch (response3)
+        {
+            case WebRequestData<List<ParentGuardian>> dataResponse3:
+
+                parentGuardianId = dataResponse3.Data[0].id;
+
+                break;
+            case WebRequestError errorResponse3:
+                Debug.LogError("Fout bij ophalen: " + errorResponse3.ErrorMessage);
+                break;
+            default:
+                Debug.LogError("Onbekende respons ontvangen");
+                break;
+        }
+
+        ApiClientHolder.ParentGuardianId = parentGuardianId;
+
+        IWebRequestReponse response2 = await patientApiClient.ReadPatientsByParentGuardian(parentGuardianId);
+
+        switch (response2)
+        {
+            case WebRequestData<List<Patient>> dataResponse:
+                ApiClientHolder.Patient = dataResponse.Data[0];
+                break;
+            case WebRequestError errorResponse:
+                Debug.LogError("Fout bij opslaan: " + errorResponse.ErrorMessage);
+                break;
+            default:
+                Debug.LogError("Onbekende respons ontvangen");
                 break;
         }
     }
@@ -105,9 +151,14 @@ public class LoginManagerScript : MonoBehaviour
         switch (response)
         {
             case WebRequestData<string> dataResponse:
-                //IsLoggedIn = true;
+
                 //ShowMessage("Login succesvol!", Color.green);
                 //Debug.Log("Gebruiker is ingelogd!");
+
+                RegisterSystem.SetActive(false);
+                LoginSystem.SetActive(false);
+                TrajectSystem.SetActive(true);
+
                 break;
             case WebRequestError errorResponse:
                 //ShowMessage("Login fout: " + errorResponse.ErrorMessage, Color.red);
@@ -147,7 +198,13 @@ public class LoginManagerScript : MonoBehaviour
         //}
     }
 
-     private void Update()
+    public void LoadWelcomeParents(string route)
+    {
+        ApiClientHolder.Route = route;
+        SceneManager.LoadScene("WelcomeParentsPage");
+    }
+
+    private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Tab))
         {

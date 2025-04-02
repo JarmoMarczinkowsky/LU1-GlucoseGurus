@@ -6,38 +6,32 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/FrameworkPrototype.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
     path: Assets/Scenes/FinalFrameworkPrototype 1.unity
     guid: 469c9a4c24e55ac4b8530452f2b82f26
   - enabled: 1
-    path: Assets/Scenes/LoginScreenPage.unity
-    guid: e31fd8c95b03d8248a8c50abaa053555
+    path: Assets/Scenes/RegisterScreenPage.unity
+    guid: fa1af7ca8710d2747bbad88e516500b3
+  - enabled: 1
+    path: Assets/Scenes/WelcomeParentsPage.unity
+    guid: ffc3690643f6a2546b3c8290f54fd368
   - enabled: 1
     path: Assets/Scenes/ParentInfoInputPage.unity
     guid: 142b8dd0331805146b4cefbb5ecfc5de
   - enabled: 1
-    path: Assets/Scenes/RegisterScreenPage.unity
-    guid: fa1af7ca8710d2747bbad88e516500b3
+    path: Assets/Scenes/PatientInfoInputPage 1.unity
+    guid: f488cb8c314a69b4d861272c3a7fe994
+  - enabled: 1
+    path: Assets/Scenes/WelcomeChildrenPage 1.unity
+    guid: 1501f4cca87b1c548b1ca50f09c446b4
+  - enabled: 1
+    path: Assets/Scenes/TreatmentplanPage.unity
+    guid: 5ea6e84da08727f4e8ea25d87c4f0fea
   - enabled: 1
     path: Assets/Scenes/SceneAvatar.unity
     guid: 646cac3afad5d374b89288c2de6928e0
   - enabled: 1
     path: Assets/Scenes/SceneNotes.unity
     guid: 2104abf2c939edd48b4fcbf29fc3a668
-  - enabled: 1
-    path: Assets/Scenes/StartPage.unity
-    guid: 3ed13db470bb2ed438d32aa01050be0b
-  - enabled: 1
-    path: Assets/Scenes/TreatmentplanPage.unity
-    guid: 5ea6e84da08727f4e8ea25d87c4f0fea
-  - enabled: 1
-    path: Assets/Scenes/WelcomeChildrenPage 1.unity
-    guid: 1501f4cca87b1c548b1ca50f09c446b4
-  - enabled: 1
-    path: Assets/Scenes/WelcomeParentsPage.unity
-    guid: ffc3690643f6a2546b3c8290f54fd368
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
   m_UseUCBPForAssetBundles: 0
