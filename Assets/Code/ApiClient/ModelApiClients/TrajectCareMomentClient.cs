@@ -6,14 +6,14 @@ public class TrajectCareMomentClient : MonoBehaviour
     public WebClient webClient;
     public async Awaitable<IWebRequestReponse> ReadTrajectCareMoments()
     {
-        string route = "/trajectCareMoments";
+        string route = "/trajectCareMoments/";
         IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route);
         return ParseTrajectCareMomentListResponse(webRequestResponse);
     }
 
     public async Awaitable<IWebRequestReponse> CreateTrajectCareMoment(TrajectCareMoment trajectCareMoment)
     {
-        string route = "/trajectCareMoments";
+        string route = "/trajectCareMoments/";
         string data = JsonUtility.ToJson(trajectCareMoment);
         IWebRequestReponse webRequestResponse = await webClient.SendPostRequest(route, data);
         return ParseTrajectCareMomentResponse(webRequestResponse);
@@ -21,7 +21,7 @@ public class TrajectCareMomentClient : MonoBehaviour
 
     public async Awaitable<IWebRequestReponse> UpdateTrajectCareMoment(TrajectCareMoment trajectCareMoment)
     {
-        string route = "/trajectCareMoments/" + trajectCareMoment.trajectId + "/" + trajectCareMoment.CareMomentId;
+        string route = "/trajectCareMoments/" + trajectCareMoment.trajectId + "/" + trajectCareMoment.CareMomentId + "/";
         string data = JsonUtility.ToJson(trajectCareMoment);
         IWebRequestReponse webRequestResponse = await webClient.SendPutRequest(route, data);
         return ParseTrajectCareMomentResponse(webRequestResponse);
@@ -29,7 +29,7 @@ public class TrajectCareMomentClient : MonoBehaviour
 
     public async Awaitable<IWebRequestReponse> DeleteTrajectCareMoment(string trajectId, string careMomentId)
     {
-        string route = "/trajectCareMoments/" + trajectId + "/" + careMomentId;
+        string route = "/trajectCareMoments/" + trajectId + "/" + careMomentId + "/";
         IWebRequestReponse webRequestResponse = await webClient.SendDeleteRequest(route);
         return ParseTrajectCareMomentResponse(webRequestResponse);
     }

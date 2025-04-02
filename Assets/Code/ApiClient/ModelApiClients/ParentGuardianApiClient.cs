@@ -10,7 +10,7 @@ public class ParentGuardianApiClient : MonoBehaviour
 
     public async Awaitable<IWebRequestReponse> ReadParentGuardians()
     {
-        string route = "/parentGuardians";
+        string route = "/parentGuardians/";
 
         IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route);
         return ParseParentGuardianListResponse(webRequestResponse);
@@ -18,7 +18,7 @@ public class ParentGuardianApiClient : MonoBehaviour
 
     public async Awaitable<IWebRequestReponse> ReadParentGuardiansByUser(string UserId)
     {
-        string route = "/parentGuardians";
+        string route = "/parentGuardians/";
 
         IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route);
         return ParseParentGuardianListResponse(webRequestResponse);
@@ -26,7 +26,7 @@ public class ParentGuardianApiClient : MonoBehaviour
 
     public async Awaitable<IWebRequestReponse> CreateParentGuardian(ParentGuardian parentGuardian)
     {
-        string route = "/parentGuardians";
+        string route = "/parentGuardians/";
         string data = JsonUtility.ToJson(parentGuardian);
 
         IWebRequestReponse webRequestResponse = await webClient.SendPostRequest(route, data);
@@ -35,7 +35,7 @@ public class ParentGuardianApiClient : MonoBehaviour
 
     public async Awaitable<IWebRequestReponse> UpdateParentGuardian(ParentGuardian parentGuardian)
     {
-        string route = "/parentGuardians/" + parentGuardian.id;
+        string route = "/parentGuardians/" + parentGuardian.id + "/";
         string data = JsonUtility.ToJson(parentGuardian);
 
         IWebRequestReponse webRequestResponse = await webClient.SendPutRequest(route, data);
@@ -44,7 +44,7 @@ public class ParentGuardianApiClient : MonoBehaviour
 
     public async Awaitable<IWebRequestReponse> DeleteParentGuardian(string parentGuardianId)
     {
-        string route = "/parentGuardians/" + parentGuardianId;
+        string route = "/parentGuardians/" + parentGuardianId + "/";
 
         IWebRequestReponse webRequestResponse = await webClient.SendDeleteRequest(route);
         return ParseParentGuardianResponse(webRequestResponse);

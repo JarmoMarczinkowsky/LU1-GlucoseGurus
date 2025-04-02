@@ -9,7 +9,7 @@ public class CareMomentApiClient : MonoBehaviour
     public WebClient webClient;
     public async Awaitable<IWebRequestReponse> ReadCareMoments()
     {
-        string route = "/careMoments";
+        string route = "/careMoments/";
         IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route);
         return ParseCareMomentListResponse(webRequestResponse);
     }

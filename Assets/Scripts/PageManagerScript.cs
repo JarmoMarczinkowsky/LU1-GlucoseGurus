@@ -16,8 +16,10 @@ public class PageManagerScript : MonoBehaviour
 
     void Start()
     {
-        DropdownMenu.SetActive(false);
-
+        if(DropdownMenu != null)
+        {
+            DropdownMenu.SetActive(false);
+        }
     }
 
     #region Navigation
@@ -43,15 +45,15 @@ public class PageManagerScript : MonoBehaviour
 
     public void SwitchScene(string sceneName)
     {
-        if (LoginManagerScript.Instance != null && LoginManagerScript.Instance.IsLoggedIn)
-        {
-            Debug.Log("Scène wisselen naar: " + sceneName);
+        //if (LoginManagerScript.Instance != null && LoginManagerScript.Instance.IsLoggedIn)
+        //{
+        //    Debug.Log("Scène wisselen naar: " + sceneName);
             SceneManager.LoadScene(sceneName);
-        }
-        else
-        {
-            Debug.LogWarning("Je moet eerst inloggen voordat je van scene kunt wisselen!");
-        }
+        //}
+        //else
+        //{
+        //    Debug.LogWarning("Je moet eerst inloggen voordat je van scene kunt wisselen!");
+        //}
     }
 
     public void LoadRegister()
@@ -71,12 +73,18 @@ public class PageManagerScript : MonoBehaviour
 
     public void LoadWelcomeKids()
     {
-        SwitchScene("WelcomeChildrenPage");
+        SwitchScene("WelcomeChildrenPage 1");
     }
 
     public void LoadWelcomeParents()
     {
         SwitchScene("WelcomeParentsPage");
+    }
+
+
+    public void LoadPatientInfo()
+    {
+        SwitchScene("PatientInfoInputPage");
     }
     #endregion Navigation
 

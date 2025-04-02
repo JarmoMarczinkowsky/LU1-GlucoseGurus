@@ -11,14 +11,22 @@ public class TrajectApiClient : MonoBehaviour
 
     public async Awaitable<IWebRequestReponse> ReadTrajects()
     {
-        string route = "/trajects";
+        string route = "/trajects/";
         IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route);
         return ParseTrajectListResponse(webRequestResponse);
     }
+    public async Awaitable<IWebRequestReponse> ReadTrajectById(string trajectId)
+    {
+        string route = "/trajects/" + trajectId + "/";
+        string data = JsonUtility.ToJson(trajectId);
+        IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route, data);
+        return ParseTrajectResponse(webRequestResponse);
+    }
+
 
     public async Awaitable<IWebRequestReponse> CreateTraject(Traject traject)
     {
-        string route = "/trajects";
+        string route = "/trajects/";
         string data = JsonUtility.ToJson(traject);
         IWebRequestReponse webRequestResponse = await webClient.SendPostRequest(route, data);
         return ParseTrajectResponse(webRequestResponse);
@@ -26,7 +34,7 @@ public class TrajectApiClient : MonoBehaviour
 
     public async Awaitable<IWebRequestReponse> UpdateTraject(Traject traject)
     {
-        string route = "/trajects/" + traject.id;
+        string route = "/trajects/" + traject.id + "/";
         string data = JsonUtility.ToJson(traject);
         IWebRequestReponse webRequestResponse = await webClient.SendPutRequest(route, data);
         return ParseTrajectResponse(webRequestResponse);
@@ -34,7 +42,7 @@ public class TrajectApiClient : MonoBehaviour
 
     public async Awaitable<IWebRequestReponse> DeleteTraject(string patientId, string trajectId)
     {
-        string route = "/trajects/" + trajectId;
+        string route = "/trajects/" + trajectId + "/";
         IWebRequestReponse webRequestResponse = await webClient.SendDeleteRequest(route);
         return ParseTrajectResponse(webRequestResponse);
     }
