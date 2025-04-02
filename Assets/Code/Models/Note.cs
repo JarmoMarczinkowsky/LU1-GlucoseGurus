@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
 
+[Serializable]
 public class Note
 {
     public string id;
 
-    public DateTime date;
+    public string date;
 
     public string text;
 
