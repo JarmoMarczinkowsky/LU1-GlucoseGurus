@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -139,7 +140,7 @@ public class NoteManagerScript : MonoBehaviour
             noteRead.SetActive(true);
             menuNoteOverview.SetActive(false);
 
-            noteReadDate.text = clickedNote.date.ToString();
+            noteReadDate.text = DateTime.Parse(clickedNote.date).ToString("dd-MM-yyyy HH:mm");
             noteReadText.text = clickedNote.text;
 
             for(int i = 0; i < lst_NoteMood.Count; i++)
