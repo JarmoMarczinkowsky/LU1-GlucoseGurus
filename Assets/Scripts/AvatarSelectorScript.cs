@@ -15,6 +15,8 @@ public class AvatarSelectorScript : MonoBehaviour
     private ApiClientHolder ApiClientHolder;
     private PatientApiClient patientApiClient;
 
+    private int selectedImage = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,23 +31,25 @@ public class AvatarSelectorScript : MonoBehaviour
         
     }
 
-    public void ClickImage(int selectedImage)
+    public void ClickImage(int imgSelected)
     {
-        Debug.Log($"Clicked image: {selectedImage}");
+        Debug.Log($"Clicked image: {imgSelected}");
 
         previewImage.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, 1);
 
-        if (selectedImage <= ListAvatars.Count - 1)
+        if (imgSelected <= ListAvatars.Count - 1)
         {
-            previewImage.GetComponent<UnityEngine.UI.Image>().sprite = ListAvatars[selectedImage].GetComponent<UnityEngine.UI.Image>().sprite;
+            previewImage.GetComponent<UnityEngine.UI.Image>().sprite = ListAvatars[imgSelected].GetComponent<UnityEngine.UI.Image>().sprite;
 
-            SaveResultToDatabase(selectedImage);
+            this.selectedImage = imgSelected;
+
+            //SaveResultToDatabase(imgSelected);
         }
     }
 
-    private async void SaveResultToDatabase(int selectedImage)
+    private async void SaveResultToDatabase(int imgSelected)
     {
-        ApiClientHolder.Patient.avatar = selectedImage;
+        ApiClientHolder.Patient.avatar = imgSelected;
 
         IWebRequestReponse webRequestResponse = await patientApiClient.UpdatePatient(ApiClientHolder.Patient);
 
@@ -68,5 +72,11 @@ public class AvatarSelectorScript : MonoBehaviour
                 throw new NotImplementedException("No implementation for webRequestResponse of class: " + webRequestResponse.GetType());
         }
 
+    }
+
+    public void SaveAvatar()
+    {
+        Debug.Log("Save avatar clicked");
+        SaveResultToDatabase(selectedImage);
     }
 }
