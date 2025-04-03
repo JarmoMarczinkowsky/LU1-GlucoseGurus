@@ -794,7 +794,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 639720971}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -904,12 +904,12 @@ RectTransform:
   m_LocalScale: {x: 1.3123717, y: 1.3123717, z: 1.3123717}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 639720972}
+  - {fileID: 760714721}
   - {fileID: 1225576842}
   - {fileID: 927479192}
   - {fileID: 734812002}
+  - {fileID: 639720972}
   - {fileID: 141960371}
-  - {fileID: 760714721}
   - {fileID: 123961201}
   - {fileID: 21253031}
   - {fileID: 906129609}
@@ -2124,12 +2124,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListAvatars:
-  - {fileID: 639720973}
+  - {fileID: 760714722}
   - {fileID: 1225576843}
   - {fileID: 927479193}
   - {fileID: 734812003}
+  - {fileID: 639720973}
   - {fileID: 141960372}
-  - {fileID: 760714722}
   - {fileID: 123961202}
   - {fileID: 21253032}
   - {fileID: 906129610}
