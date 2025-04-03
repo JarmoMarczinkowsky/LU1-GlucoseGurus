@@ -37,25 +37,37 @@ public class RouteManagerScript : MonoBehaviour
         //string ParentGuardian = ApiClientHolder.ParentGuardianId;        
         //string ParentGuardian = "3F2504E0-4F89-11D3-9A0C-0305E82C3301";
 
-        IWebRequestReponse webRequestResponse = await patientApiClient.ReadPatientsByParentGuardian(ApiClientHolder.ParentGuardianId);
-
-        switch (webRequestResponse)
+        // Voor wanneer de patientgegevens nog onbekend zijn
+        if (ApiClientHolder.Patient == null)
         {
-            case WebRequestData<List<Patient>> dataResponse:
+            IWebRequestReponse webRequestResponse = await patientApiClient.ReadPatientsByParentGuardian(ApiClientHolder.ParentGuardianId);
 
-                patient = dataResponse.Data[0];
-                break;
-            case WebRequestError errorResponse:
-                string errorMessage = errorResponse.ErrorMessage;
+            switch (webRequestResponse)
+            {
+                case WebRequestData<List<Patient>> dataResponse:
 
-                Debug.Log("Read patient error: " + errorMessage);
+                    patient = dataResponse.Data[0];
+                    ApiClientHolder.Patient = patient;
 
-                // TODO: Handle error scenario. Show the errormessage to the user.
-                break;
-            default:
-                throw new NotImplementedException("No implementation for webRequestResponse of class: " + webRequestResponse.GetType());
+                    break;
+                case WebRequestError errorResponse:
+                    string errorMessage = errorResponse.ErrorMessage;
+
+                    Debug.Log("Read patient error: " + errorMessage);
+
+                    // TODO: Handle error scenario. Show the errormessage to the user.
+                    break;
+                default:
+                    throw new NotImplementedException("No implementation for webRequestResponse of class: " + webRequestResponse.GetType());
+            }
+        }
+        // Voor wanneer de patient gegevens bekend zijn
+        else
+        {
+            patient = ApiClientHolder.Patient;
         }
 
+        // Als de route nog onbekend is
         if (route == null)
         {
             IWebRequestReponse webRequestResponse2 = await trajectApiClient.ReadTrajectById(patient.trajectId);
@@ -65,7 +77,8 @@ public class RouteManagerScript : MonoBehaviour
                 case WebRequestData<Traject> dataResponse2:
 
                     Traject traject = dataResponse2.Data;
-                    ApiClientHolder.Route = traject.name[0].ToString();
+                    route = traject.name[0].ToString();
+                     ApiClientHolder.Route = route;
 
                     break;
                 case WebRequestError errorResponse2:
@@ -74,8 +87,12 @@ public class RouteManagerScript : MonoBehaviour
                     throw new NotImplementedException("No implementation for webRequestResponse of class: " + webRequestResponse2.GetType());
             }
         }
+        // Voor wanneer de route bekend is
+        else
+        {
+            route = ApiClientHolder.Route;
+        }
 
-        route = ApiClientHolder.Route;
 
         if (route == "A")
         {

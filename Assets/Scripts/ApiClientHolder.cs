@@ -20,7 +20,7 @@ public class ApiClientHolder : MonoBehaviour
     [Header("ImportantInfo")]
     public static string ParentGuardianId;
     public static string Route;
-    public static Patient Patient;
+    public static Patient Patient = new Patient();
 
 
     public static ApiClientHolder instance;

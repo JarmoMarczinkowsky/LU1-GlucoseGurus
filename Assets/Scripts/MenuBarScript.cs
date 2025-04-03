@@ -18,15 +18,6 @@ public class MenuBarScript : MonoBehaviour
 
     public void Start()
     {
-        if(ApiClientHolder.Patient != null)
-        {
-            avatarCount = ApiClientHolder.Patient.avatar;
-        }
-        else
-        {
-            avatarCount = 0;
-        }
-
         if (DropdownMenu != null)
         {
             DropdownMenu.SetActive(false);

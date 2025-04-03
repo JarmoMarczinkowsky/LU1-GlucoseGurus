@@ -13,6 +13,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class TreatmentplanManagerScript : MonoBehaviour
 {
 
@@ -183,7 +184,6 @@ public class TreatmentplanManagerScript : MonoBehaviour
         // some buttons are set to "completed"
         if (CompletedTreatmentplanMoments != null)
         {
-
             foreach (var button in CompletedTreatmentplanMoments)
             {
                 RectTransform rectTransform = button.GetComponent<RectTransform>();
