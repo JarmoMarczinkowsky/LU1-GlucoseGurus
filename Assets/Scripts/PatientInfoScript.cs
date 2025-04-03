@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using static PatientInfoScript;
+using UnityEngine.SceneManagement;
 
 public class PatientInfoScript : MonoBehaviour
 {
@@ -94,8 +95,7 @@ public class PatientInfoScript : MonoBehaviour
 
                 foreach(CareMoment careMoment1 in CareMoments)
                 {
-                    Debug.Log("Caremoment: " + careMoment1);
-
+                    //Debug.Log("Caremoment: " + careMoment1);
                 }
 
                 careMomentList = new List<CareMoment>();
@@ -123,10 +123,10 @@ public class PatientInfoScript : MonoBehaviour
                     }
                 }
 
-                foreach (CareMoment careMoment1 in careMomentList)
-                {
-                    Debug.Log("Caremoment: " + careMoment1);
-                }
+                //foreach (CareMoment careMoment1 in careMomentList)
+                //{
+                //    Debug.Log("Caremoment: " + careMoment1);
+                //}
 
                 break;
             case WebRequestError errorResponse4:
@@ -196,7 +196,7 @@ public class PatientInfoScript : MonoBehaviour
         }
 
         // There is currently only one doctor, Henk De Groot (create him in the database)
-        // doctorId = 9112e3d9-172d-4576-92d2-8279e1aa09e4
+        // doctorId = 022f4e4f-d4b7-4b41-bbd7-17255819aef8
         Patient patient = new Patient
         {
             id = System.Guid.NewGuid().ToString(),
@@ -205,7 +205,7 @@ public class PatientInfoScript : MonoBehaviour
             trajectId = traject.id,
             parentGuardianId = parentGuardianId,
             //doctorId = DoctorInput.text
-            doctorId = "9112e3d9-172d-4576-92d2-8279e1aa09e4"
+            doctorId = "022f4e4f-d4b7-4b41-bbd7-17255819aef8"
         };
 
         IWebRequestReponse response2 = await patientApiClient.CreatePatient(patient);
@@ -218,6 +218,8 @@ public class PatientInfoScript : MonoBehaviour
 
                 ShowMessage("Patiëntgegevens opgeslagen!", Color.green);
                 Debug.Log("Patiëntgegevens succesvol verzonden!");
+
+                SceneManager.LoadScene("TreatmentplanPage");
                 break;
             case WebRequestError errorResponse:
                 ShowMessage("Fout bij opslaan: " + errorResponse.ErrorMessage, Color.red);
