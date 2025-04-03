@@ -16,12 +16,18 @@ public class NoteManagerScript : MonoBehaviour
 
     [Header("Note overview")]
     public GameObject noteField;
+    public GameObject noteRead;
+
+    public TMP_InputField noteReadDate;
+    public TMP_InputField noteReadText;
+    public List<Image> lst_NoteMood;
+
 
     [Header("Note creator")]
     public GameObject menuNoteOverview;
     public GameObject menuNoteCreator;
     public TMP_Text txbErrorNoteCreator;
-    public GameObject notePrefab;
+    public Button notePrefab;
 
     [Header("Dependencies")]
     private ApiClientHolder ApiClientHolder;
@@ -36,6 +42,7 @@ public class NoteManagerScript : MonoBehaviour
     private int moodScale = 0;
     private Note newNote;
     private bool hoverOverCreationMenu = false;
+    private List<Note> notes;
 
     private List<string> motivationTexts = new List<string>() { "Vandaag ben ik sterker geweest dan Superman, omdat...", "Een moment waarop ik sterk was vandaag, was...", "Een kleine overwinning van vandaag was...", "Vandaag voelde ik mij een held, omdat...", "Ik ben trots op mijzelf vandaag, omdat..." };
 
@@ -48,10 +55,12 @@ public class NoteManagerScript : MonoBehaviour
         userApiClient = ApiClientHolder.userApiClient;
 
         menuNoteCreator.SetActive(false);
+        noteRead.SetActive(false);
 
         ClearNotes();
         LoadNotes();
     }
+
 
     // Update is called once per frame
     void Update()
@@ -78,15 +87,25 @@ public class NoteManagerScript : MonoBehaviour
         switch (webRequestResponse)
         {
             case WebRequestData<List<Note>> dataResponse:
-                List<Note> notes = dataResponse.Data;
+                notes = dataResponse.Data;
+                if (notes != null)
+                {
+                    Debug.Log("Aantal notes in lijst: " + notes.Count);
+                }
+
                 Debug.Log("List of notes: ");
                 notes.ForEach(note => Debug.Log(note.id));
                 // TODO: Handle succes scenario.
                 foreach (var note in notes)
                 {
-                    GameObject retrievedNote = Instantiate(notePrefab, menuNoteOverview.transform);
+                    Button retrievedNote = Instantiate(notePrefab, menuNoteOverview.transform); 
+                    Debug.Log("Created button for note: " + note.id);
+
+                    retrievedNote.onClick.AddListener(() => ClickNote(note.id));
+
                     retrievedNote.transform.parent = noteField.transform;
 
+                    //retrievedNote.GetComponent<SingleNoteScript>().SetId(note.id);
                     if (retrievedNote.GetComponentInChildren<TMP_Text>() != null)
                     {
                         retrievedNote.GetComponentInChildren<TMP_Text>().text = note.date.ToString();
@@ -102,6 +121,52 @@ public class NoteManagerScript : MonoBehaviour
                 throw new NotImplementedException("No implementation for webRequestResponse of class: " + webRequestResponse.GetType());
         }
 
+    }
+
+    public void ClickNote(string noteId )
+    {
+        Debug.Log("Note clicked: " + noteId);
+        Note clickedNote = notes.Find(note => note.id == noteId);
+        if (clickedNote != null)
+        {
+            noteRead.SetActive(true);
+            menuNoteOverview.SetActive(false);
+
+            noteReadDate.text = clickedNote.date.ToString();
+            noteReadText.text = clickedNote.text;
+
+            for(int i = 0; i < lst_NoteMood.Count; i++)
+            {
+                if (lst_NoteMood[i] != null)
+                {
+                    if (i == clickedNote.userMood - 1)
+                    {
+                        lst_NoteMood[i].color = Color.white;
+                    }
+                    else
+                    {
+                        lst_NoteMood[i].color = Color.gray;
+                    }
+                }
+            }
+
+        }
+    }
+
+    public void HoverOverNote()
+    {
+        notePrefab.GetComponent<Image>().color = new Color(0.75f, 0.75f, 0.75f, 1);
+    }
+
+    public void HoverExitNote()
+    {
+        notePrefab.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+    }
+
+    public void CloseOpenedNote()
+    {
+        noteRead.SetActive(false);
+        menuNoteOverview.SetActive(true);
     }
 
     private void SelectOtherInputField()
@@ -173,33 +238,43 @@ public class NoteManagerScript : MonoBehaviour
 
     public void CreateNote()
     {
-        if (!NewNoteValidation())
+        Guid newGuid = Guid.NewGuid();
+        Debug.Log("Clicked create note button");
+        string newDate = DateTime.Now.ToString("yyyy-MM-dd") +"T" + DateTime.Now.ToString("HH:mm:ss");
+
+        if (NewNoteValidation())
         {
             newNote = new Note()
             {
-                text = lst_InputFields[1].text,
-                userMood = moodScale
+                id = newGuid.ToString(),
+                text = lst_InputFields[1].text.Trim(),
+                userMood = moodScale,
+                date = newDate,
+                parentGuardianId = "678CB822-6DE1-478C-8B03-F852E6CA51ED",
+                patientId = "6FC94F41-00EB-4963-AC31-07DF79809A7D"
             };
 
             CreateNewNote();
+        }
+        else
+        {
+            Debug.Log("Note is not valid");
         }
     }
 
     public bool NewNoteValidation()
     {
-        if (string.IsNullOrWhiteSpace(lst_InputFields[0].text))
-        {
-            txbErrorNoteCreator.text = "Voer een titel in";
-            return false;
-        }
-        else if(string.IsNullOrWhiteSpace(lst_InputFields[1].text))
+
+        if(string.IsNullOrWhiteSpace(lst_InputFields[1].text))
         {
             txbErrorNoteCreator.text = "Voer een notitie in";
+            Debug.Log("Note is empty");
             return false;
         }
         else if (moodScale == 0)
         {
             txbErrorNoteCreator.text = "Selecteer een stemming";
+            Debug.Log("Mood is not selected");
             return false;
         }
 
@@ -215,6 +290,11 @@ public class NoteManagerScript : MonoBehaviour
             case WebRequestData<Note> dataResponse:
                 newNote.id = dataResponse.Data.id;
                 // TODO: Handle succes scenario.
+                CloseNoteCreator();
+
+                ClearNotes();
+                LoadNotes();
+
                 break;
             case WebRequestError errorResponse:
                 string errorMessage = errorResponse.ErrorMessage;

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -12,10 +13,6 @@ public class WebClient : MonoBehaviour
     //public static WebClient Singleton;
     public static WebClient instance;
 
-    public void Start()
-    {
-        Debug.Log("Nieuwe WebClent aangemaakt");
-    }
 
     private void Awake()
     {
