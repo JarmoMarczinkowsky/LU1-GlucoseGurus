@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -80,7 +81,7 @@ public class NoteManagerScript : MonoBehaviour
 
     private async void LoadNotes()
     {
-        string loggedInUserId = "6FC94F41-00EB-4963-AC31-07DF79809A7D";
+        string loggedInUserId = ApiClientHolder.Patient.id;
 
         IWebRequestReponse webRequestResponse = await noteApiClient.ReadNotesByPatient(loggedInUserId);
 
@@ -88,6 +89,11 @@ public class NoteManagerScript : MonoBehaviour
         {
             case WebRequestData<List<Note>> dataResponse:
                 notes = dataResponse.Data;
+
+                //sort notes by date
+                notes.Sort((x, y) => DateTime.Compare(DateTime.Parse(y.date), DateTime.Parse(x.date)));
+
+
                 if (notes != null)
                 {
                     Debug.Log("Aantal notes in lijst: " + notes.Count);
@@ -105,10 +111,12 @@ public class NoteManagerScript : MonoBehaviour
 
                     retrievedNote.transform.parent = noteField.transform;
 
+                    string formatDate = DateTime.Parse(note.date).ToString("dd-MM-yyyy HH:mm");
+
                     //retrievedNote.GetComponent<SingleNoteScript>().SetId(note.id);
                     if (retrievedNote.GetComponentInChildren<TMP_Text>() != null)
                     {
-                        retrievedNote.GetComponentInChildren<TMP_Text>().text = note.date.ToString();
+                        retrievedNote.GetComponentInChildren<TMP_Text>().text = formatDate;
                     }
                 }
                 break;
@@ -132,7 +140,7 @@ public class NoteManagerScript : MonoBehaviour
             noteRead.SetActive(true);
             menuNoteOverview.SetActive(false);
 
-            noteReadDate.text = clickedNote.date.ToString();
+            noteReadDate.text = DateTime.Parse(clickedNote.date).ToString("dd-MM-yyyy HH:mm");
             noteReadText.text = clickedNote.text;
 
             for(int i = 0; i < lst_NoteMood.Count; i++)
@@ -250,8 +258,8 @@ public class NoteManagerScript : MonoBehaviour
                 text = lst_InputFields[1].text.Trim(),
                 userMood = moodScale,
                 date = newDate,
-                parentGuardianId = "678CB822-6DE1-478C-8B03-F852E6CA51ED",
-                patientId = "6FC94F41-00EB-4963-AC31-07DF79809A7D"
+                parentGuardianId = ApiClientHolder.ParentGuardianId,
+                patientId = ApiClientHolder.Patient.id
             };
 
             CreateNewNote();
