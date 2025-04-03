@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using static PatientInfoScript;
+using UnityEngine.SceneManagement;
 
 public class PatientInfoScript : MonoBehaviour
 {
@@ -218,6 +219,8 @@ public class PatientInfoScript : MonoBehaviour
 
                 ShowMessage("Patiëntgegevens opgeslagen!", Color.green);
                 Debug.Log("Patiëntgegevens succesvol verzonden!");
+
+                SceneManager.LoadScene("TreatmentplanPage");
                 break;
             case WebRequestError errorResponse:
                 ShowMessage("Fout bij opslaan: " + errorResponse.ErrorMessage, Color.red);
