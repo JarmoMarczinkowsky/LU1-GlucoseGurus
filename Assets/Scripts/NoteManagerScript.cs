@@ -9,7 +9,6 @@ using UnityEngine.UI;
 
 public class NoteManagerScript : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     [Header("Input Fields")]
     public List<TMP_InputField> lst_InputFields;
     public Button btnCreate;
@@ -96,16 +95,16 @@ public class NoteManagerScript : MonoBehaviour
 
                 if (notes != null)
                 {
-                    Debug.Log("Aantal notes in lijst: " + notes.Count);
+                    //Debug.Log("Aantal notes in lijst: " + notes.Count);
                 }
 
-                Debug.Log("List of notes: ");
-                notes.ForEach(note => Debug.Log(note.id));
+                //Debug.Log("List of notes: ");
+                //notes.ForEach(note => Debug.Log(note.id));
                 // TODO: Handle succes scenario.
                 foreach (var note in notes)
                 {
                     Button retrievedNote = Instantiate(notePrefab, menuNoteOverview.transform); 
-                    Debug.Log("Created button for note: " + note.id);
+                    //Debug.Log("Created button for note: " + note.id);
 
                     retrievedNote.onClick.AddListener(() => ClickNote(note.id));
 
@@ -122,7 +121,7 @@ public class NoteManagerScript : MonoBehaviour
                 break;
             case WebRequestError errorResponse:
                 string errorMessage = errorResponse.ErrorMessage;
-                Debug.Log("Read notes error: " + errorMessage);
+                Debug.LogError("Read notes error: " + errorMessage);
                 // TODO: Handle error scenario. Show the errormessage to the user.
                 break;
             default:
@@ -133,7 +132,7 @@ public class NoteManagerScript : MonoBehaviour
 
     public void ClickNote(string noteId )
     {
-        Debug.Log("Note clicked: " + noteId);
+        //Debug.Log("Note clicked: " + noteId);
         Note clickedNote = notes.Find(note => note.id == noteId);
         if (clickedNote != null)
         {
@@ -182,7 +181,7 @@ public class NoteManagerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab) && !isTabPressed)
         {
             isTabPressed = true;
-            Debug.Log($"TabIndex: {tabIndex}");
+            //Debug.Log($"TabIndex: {tabIndex}");
 
             //if tab is pressed, select the next input field, if the last input field is selected, select the button, if the button is selected, select the first input field
             switch (tabIndex)
@@ -217,12 +216,12 @@ public class NoteManagerScript : MonoBehaviour
         {
             if(Input.GetMouseButtonDown(0) && !hoverOverCreationMenu)
             {
-                Debug.Log("Niet gehoverd over menu");
+                //Debug.Log("Niet gehoverd over menu");
                 CloseNoteCreator();
             }
             else if (Input.GetMouseButtonDown(0) && hoverOverCreationMenu)
             {
-                Debug.Log("Aan het hoveren over menu");
+                //Debug.Log("Aan het hoveren over menu");
             }
         }
     }
@@ -235,6 +234,8 @@ public class NoteManagerScript : MonoBehaviour
 
         int random = UnityEngine.Random.Range(0, motivationTexts.Count);
 
+        lst_InputFields[0].text = DateTime.Now.ToString();
+        lst_InputFields[1].text = "";
         lst_InputFields[1].placeholder.GetComponent<TMP_Text>().text = motivationTexts[random];
     }
 
@@ -247,7 +248,7 @@ public class NoteManagerScript : MonoBehaviour
     public void CreateNote()
     {
         Guid newGuid = Guid.NewGuid();
-        Debug.Log("Clicked create note button");
+        //Debug.Log("Clicked create note button");
         string newDate = DateTime.Now.ToString("yyyy-MM-dd") +"T" + DateTime.Now.ToString("HH:mm:ss");
 
         if (NewNoteValidation())
@@ -266,7 +267,7 @@ public class NoteManagerScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("Note is not valid");
+            Debug.LogError("Note is not valid");
         }
     }
 
@@ -276,13 +277,13 @@ public class NoteManagerScript : MonoBehaviour
         if(string.IsNullOrWhiteSpace(lst_InputFields[1].text))
         {
             txbErrorNoteCreator.text = "Voer een notitie in";
-            Debug.Log("Note is empty");
+            Debug.LogError("Note is empty");
             return false;
         }
         else if (moodScale == 0)
         {
             txbErrorNoteCreator.text = "Selecteer een stemming";
-            Debug.Log("Mood is not selected");
+            Debug.LogError("Mood is not selected");
             return false;
         }
 
@@ -306,7 +307,7 @@ public class NoteManagerScript : MonoBehaviour
                 break;
             case WebRequestError errorResponse:
                 string errorMessage = errorResponse.ErrorMessage;
-                Debug.Log("Create note error: " + errorMessage);
+                Debug.LogError("Create note error: " + errorMessage);
                 // TODO: Handle error scenario. Show the errormessage to the user.
                 break;
             default:
@@ -316,7 +317,7 @@ public class NoteManagerScript : MonoBehaviour
 
     public void ChangeMoodScale(int scale)
     {
-        Debug.Log($"Clicked mood scale {scale}");
+        //Debug.Log($"Clicked mood scale {scale}");
 
         moodScale = scale;
 
@@ -338,7 +339,7 @@ public class NoteManagerScript : MonoBehaviour
 
     public void HoverOverMoodScale(int scale)
     {
-        Debug.Log($"Hover over mood scale {scale}");
+        //Debug.Log($"Hover over mood scale {scale}");
         for (int i = 0; i < lst_MoodImages.Count; i++)
         {
             if (lst_MoodImages[i] != null && moodScale == 0)
@@ -357,7 +358,7 @@ public class NoteManagerScript : MonoBehaviour
 
     public void HoverExitMoodScale(int scale)
     {
-        Debug.Log($"Hover exited mood scale {scale}");
+        //Debug.Log($"Hover exited mood scale {scale}");
         for (int i = 0; i < lst_MoodImages.Count; i++)
         {
             if (lst_MoodImages[i] != null && moodScale == 0)

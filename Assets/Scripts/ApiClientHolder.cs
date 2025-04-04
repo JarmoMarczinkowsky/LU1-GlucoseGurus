@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
 //using TMPro;
 //using UnityEngine.UI;
 //using System.Threading.Tasks;
@@ -21,6 +23,7 @@ public class ApiClientHolder : MonoBehaviour
     public static string ParentGuardianId;
     public static string Route;
     public static Patient Patient = new Patient();
+    public static List<CareMoment> CareMoments = new List<CareMoment>();
 
 
     public static ApiClientHolder instance;
