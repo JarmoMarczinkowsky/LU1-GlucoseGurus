@@ -93,10 +93,10 @@ public class PatientInfoScript : MonoBehaviour
 
                 List<CareMoment> CareMoments = dataResponse4.Data;
 
-                foreach(CareMoment careMoment1 in CareMoments)
-                {
-                    //Debug.Log("Caremoment: " + careMoment1);
-                }
+                //foreach(CareMoment careMoment1 in CareMoments)
+                //{
+                //    //Debug.Log("Caremoment: " + careMoment1);
+                //}
 
                 careMomentList = new List<CareMoment>();
 
@@ -108,6 +108,8 @@ public class PatientInfoScript : MonoBehaviour
                     if (careMoment.name[0] == 'A')
                     {
                         careMomentList.Add(careMoment);
+                        ApiClientHolder.CareMoments.Add(careMoment);
+
                     }
                 }
 
@@ -119,6 +121,7 @@ public class PatientInfoScript : MonoBehaviour
                         if (careMoment.name[0] == 'B')
                         {
                             careMomentList.Add(careMoment);
+                            ApiClientHolder.CareMoments.Add(careMoment);
                         }
                     }
                 }
@@ -197,6 +200,8 @@ public class PatientInfoScript : MonoBehaviour
 
         // There is currently only one doctor, Henk De Groot (create him in the database)
         // doctorId = 022f4e4f-d4b7-4b41-bbd7-17255819aef8
+        // doctorId in Azure: A1B2C3D4-E5F6-7890-ABCD-1234567890AB
+
         Patient patient = new Patient
         {
             id = System.Guid.NewGuid().ToString(),

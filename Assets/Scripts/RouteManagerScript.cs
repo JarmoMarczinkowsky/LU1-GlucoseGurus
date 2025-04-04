@@ -46,9 +46,12 @@ public class RouteManagerScript : MonoBehaviour
             {
                 case WebRequestData<List<Patient>> dataResponse:
 
-                    patient = dataResponse.Data[0];
-                    ApiClientHolder.Patient = patient;
+                    foreach(Patient _patient in dataResponse.Data)
+                    {
+                        patient = _patient;
+                        ApiClientHolder.Patient = patient;
 
+                    }
                     break;
                 case WebRequestError errorResponse:
                     string errorMessage = errorResponse.ErrorMessage;

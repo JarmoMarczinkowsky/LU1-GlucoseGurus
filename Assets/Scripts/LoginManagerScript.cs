@@ -30,6 +30,7 @@ public class LoginManagerScript : MonoBehaviour
     private UserApiClient userApiClient;
     private ParentGuardianApiClient parentGuardianApiClient;
     private PatientApiClient patientApiClient;
+    private CareMomentApiClient careMomentApiClient;
 
     public void Start()
     {
@@ -37,6 +38,7 @@ public class LoginManagerScript : MonoBehaviour
         userApiClient = ApiClientHolder.userApiClient;
         parentGuardianApiClient = ApiClientHolder.parentGuardianApiClient;
         patientApiClient = ApiClientHolder.patientApiClient;
+        careMomentApiClient = ApiClientHolder.careMomentApiClient;
 
         RegisterSystem.SetActive(true);
         LoginSystem.SetActive(true);
@@ -77,7 +79,6 @@ public class LoginManagerScript : MonoBehaviour
 
     private async void ReadPatientInfo()
     {
-        string parentGuardianId = "";
 
         IWebRequestReponse response3 = await parentGuardianApiClient.ReadParentGuardians();
 
@@ -85,7 +86,10 @@ public class LoginManagerScript : MonoBehaviour
         {
             case WebRequestData<List<ParentGuardian>> dataResponse3:
 
-                parentGuardianId = dataResponse3.Data[0].id;
+                foreach (ParentGuardian parentGuardian in dataResponse3.Data)
+                {
+                    ApiClientHolder.ParentGuardianId = parentGuardian.id;
+                }
 
                 break;
             case WebRequestError errorResponse3:
@@ -96,21 +100,66 @@ public class LoginManagerScript : MonoBehaviour
                 break;
         }
 
-        ApiClientHolder.ParentGuardianId = parentGuardianId;
-
-        IWebRequestReponse response2 = await patientApiClient.ReadPatientsByParentGuardian(parentGuardianId);
+        IWebRequestReponse response2 = await patientApiClient.ReadPatientsByParentGuardian(ApiClientHolder.ParentGuardianId);
 
         switch (response2)
         {
-            case WebRequestData<List<Patient>> dataResponse:
-                ApiClientHolder.Patient = dataResponse.Data[0];
+            case WebRequestData<List<Patient>> dataResponse2:
+                // Code breaks here
+                foreach(Patient patient in dataResponse2.Data)
+                {
+                    ApiClientHolder.Patient = patient;
+                }
+
                 break;
-            case WebRequestError errorResponse:
-                Debug.LogError("Fout bij opslaan: " + errorResponse.ErrorMessage);
+            case WebRequestError errorResponse2:
+                Debug.LogError("Fout bij opslaan: " + errorResponse2.ErrorMessage);
                 break;
             default:
                 Debug.LogError("Onbekende respons ontvangen");
                 break;
+        }
+
+        if(ApiClientHolder.CareMoments == null)
+        {
+            IWebRequestReponse response4 = await careMomentApiClient.ReadCareMoments();
+
+            switch (response4)
+            {
+                case WebRequestData<List<CareMoment>> dataResponse4:
+
+                    List<CareMoment> CareMoments = dataResponse4.Data;
+
+                    // Route A
+                    if (ApiClientHolder.Route == "A")
+                    {
+                        foreach (CareMoment careMoment in CareMoments)
+
+                            if (careMoment.name[0] == 'A')
+                            {
+                                ApiClientHolder.CareMoments.Add(careMoment);
+                            }
+                    }
+
+                    // Route B
+                    else if (ApiClientHolder.Route == "B")
+                    {
+                        foreach (CareMoment careMoment in CareMoments)
+                        {
+                            if (careMoment.name[0] == 'B')
+                            {
+                                ApiClientHolder.CareMoments.Add(careMoment);
+                            }
+                        }
+                    }
+                    break;
+                case WebRequestError errorResponse4:
+                    Debug.LogError("Fout bij opslaan: " + errorResponse4.ErrorMessage);
+                    break;
+                default:
+                    Debug.LogError("Onbekende respons ontvangen");
+                    break;
+            }
         }
     }
 

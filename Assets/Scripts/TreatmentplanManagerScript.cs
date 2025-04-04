@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 
 //using System.Drawing;
@@ -57,6 +58,7 @@ public class TreatmentplanManagerScript : MonoBehaviour
         careMomentApiClient = ApiClientHolder.careMomentApiClient;
         patientApiClient = ApiClientHolder.patientApiClient;
 
+
         route = _route;
 
 
@@ -66,7 +68,7 @@ public class TreatmentplanManagerScript : MonoBehaviour
             menu.gameObject.SetActive(false);
         }
 
-        if(route == "A")
+        if (route == "A")
         {
             // Route A
             operationStep = 5;
@@ -79,34 +81,22 @@ public class TreatmentplanManagerScript : MonoBehaviour
             operationStep2 = 6;
         }
 
-        IWebRequestReponse webRequestResponse = await trajectCareMomentClient.ReadTrajectCareMoments();
-
-        switch (webRequestResponse)
+        // Get the trajectcaremoments, and retrieve caremoments if that was not yet done
+        if (ApiClientHolder.CareMoments.Count == 0)
         {
-            case WebRequestData<List<TrajectCareMoment>> dataResponse:
-                List<TrajectCareMoment> _trajectCareMoments = dataResponse.Data;
-
-                _trajectCareMoments.ForEach(trajectCareMoment => TrajectCareMoments.Add(trajectCareMoment));
-
-                //Debug.Log("List of traject caremoments: ");
-                //_trajectCareMoments.ForEach(trajectCareMoment => Debug.Log(trajectCareMoment.name));
-                // TODO: Handle succes scenario.
-
-                break;
-            case WebRequestError errorResponse:
-                string errorMessage = errorResponse.ErrorMessage;
-                Debug.Log("Read notes error: " + errorMessage);
-
-                // TODO: Handle error scenario. Show the errormessage to the user.
-
-                break;
-            default:
-                throw new NotImplementedException("No implementation for webRequestResponse of class: " + webRequestResponse.GetType());
+            await GetCaremoments();
         }
+
+        foreach (CareMoment careMoment in ApiClientHolder.CareMoments)
+        {
+            await GetTrajectCaremoment(careMoment);
+        }
+
+        Debug.Log("MangoCount: " + TrajectCareMoments.Count);
 
         foreach (TrajectCareMoment trajectCareMoment in TrajectCareMoments)
         {
-            if(trajectCareMoment.isCompleted == true)
+            if (trajectCareMoment.isCompleted == true)
             {
                 // Completes any of the trajectcaremoments if they're done
 
@@ -137,11 +127,87 @@ public class TreatmentplanManagerScript : MonoBehaviour
             // recoveryPopup.gameObject.SetActive(true);
             // Or something in this direction
         }
-        else if(treatmentStep == operationStep2 && operationStep2 !=0)
+        else if (treatmentStep == operationStep2 && operationStep2 != 0)
         {
             // recoveryPopup.gameObject.SetActive(true);
             // Or something in this direction
         }
+    }
+
+    private async Task<int> GetTrajectCaremoment(CareMoment careMoment)
+    {
+        IWebRequestReponse response4 = await trajectCareMomentClient.ReadTrajectCareMomentByIds(ApiClientHolder.Patient.trajectId, careMoment.id);
+
+        switch (response4)
+        {
+            case WebRequestData<TrajectCareMoment> dataResponse4:
+
+                dataResponse4.Data.CareMomentId = careMoment.id;
+
+                TrajectCareMoments.Add(dataResponse4.Data);
+                if(dataResponse4.Data.isCompleted == true)
+                {
+
+                }
+
+                break;
+            case WebRequestError errorResponse4:
+                Debug.LogError("Fout bij opslaan: " + errorResponse4.ErrorMessage);
+                break;
+            default:
+                Debug.LogError("Onbekende respons ontvangen");
+                break;
+        }
+        return 0;
+    }
+
+    private async Task<int> GetCaremoments()
+    {
+        IWebRequestReponse response4 = await careMomentApiClient.ReadCareMoments();
+
+        switch (response4)
+        {
+            case WebRequestData<List<CareMoment>> dataResponse4:
+
+                List<CareMoment> CareMoments = dataResponse4.Data;
+
+                //Debug.Log("Handled response");
+                // Route A
+                if (ApiClientHolder.Route == "A")
+                {
+                    foreach (CareMoment careMoment in CareMoments)
+
+                        if (careMoment.name[0] == 'A')
+                        {
+                            ApiClientHolder.CareMoments.Add(careMoment);
+                        }
+                }
+
+                // Route B
+                else if (ApiClientHolder.Route == "B")
+                {
+                    foreach (CareMoment careMoment in CareMoments)
+                    {
+                        if (careMoment.name[0] == 'B')
+                        {
+                            ApiClientHolder.CareMoments.Add(careMoment);
+                        }
+                    }
+                }
+                else
+                {
+                    Debug.LogError("No route found");
+                }
+
+                break;
+            case WebRequestError errorResponse4:
+                Debug.LogError("Fout bij opslaan: " + errorResponse4.ErrorMessage);
+                break;
+            default:
+                Debug.LogError("Onbekende respons ontvangen");
+                break;
+        }
+        return 0;
     }
 
 
@@ -182,8 +248,10 @@ public class TreatmentplanManagerScript : MonoBehaviour
         //}
 
         // some buttons are set to "completed"
+
         if (CompletedTreatmentplanMoments != null)
         {
+            Debug.Log("Check");
             foreach (var button in CompletedTreatmentplanMoments)
             {
                 RectTransform rectTransform = button.GetComponent<RectTransform>();
@@ -203,7 +271,7 @@ public class TreatmentplanManagerScript : MonoBehaviour
     {
         // Adds the completed steps to a seperate list, aslong as it wasn't added to that list before
         // Watch out for the "<" sign, it might have to be "<="
-        if(index < treatmentStep && !CompletedTreatmentplanMoments.Contains(TreatmentplanMoments[index]))
+        if(!CompletedTreatmentplanMoments.Contains(TreatmentplanMoments[index]))
         {
             // update the trajectCaremoment
             TrajectCareMoments[index].isCompleted = true;
@@ -224,7 +292,7 @@ public class TreatmentplanManagerScript : MonoBehaviour
                     break;
                 case WebRequestError errorResponse:
                     string errorMessage = errorResponse.ErrorMessage;
-                    Debug.Log("Read notes error: " + errorMessage);
+                    Debug.Log("Update trajectcaremoment error: " + errorMessage);
 
                     // TODO: Handle error scenario. Show the errormessage to the user.
 

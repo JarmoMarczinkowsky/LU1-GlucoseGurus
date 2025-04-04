@@ -10,6 +10,13 @@ public class TrajectCareMomentClient : MonoBehaviour
         IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route);
         return ParseTrajectCareMomentListResponse(webRequestResponse);
     }
+    public async Awaitable<IWebRequestReponse> ReadTrajectCareMomentByIds(string trajectId, string careMomentid)
+    {
+        string route = "/trajectCareMoments/" + trajectId + "/" + careMomentid + "/";
+        // volgensmij heeft ie geen data nodig
+        IWebRequestReponse webRequestResponse = await webClient.SendGetRequest(route);
+        return ParseTrajectCareMomentResponse(webRequestResponse);
+    }
 
     public async Awaitable<IWebRequestReponse> CreateTrajectCareMoment(TrajectCareMoment trajectCareMoment)
     {
