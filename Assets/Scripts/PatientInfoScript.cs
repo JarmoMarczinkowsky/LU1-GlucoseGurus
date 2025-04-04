@@ -210,7 +210,7 @@ public class PatientInfoScript : MonoBehaviour
             trajectId = traject.id,
             parentGuardianId = parentGuardianId,
             //doctorId = DoctorInput.text
-            doctorId = "022f4e4f-d4b7-4b41-bbd7-17255819aef8"
+            doctorId = "A1B2C3D4-E5F6-7890-ABCD-1234567890AB"
         };
 
         IWebRequestReponse response2 = await patientApiClient.CreatePatient(patient);
